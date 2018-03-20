@@ -1,6 +1,6 @@
 # OTM-harjoitustyö
 
-*Ohjelmistotuotannon menetelmät -kurssin harjoitustyö*
+*Ohjelmistotuotannon menetelmät -kurssin viikkotehtäviä sekä harjoitustyö*
 
 ## Tehtävät
 
