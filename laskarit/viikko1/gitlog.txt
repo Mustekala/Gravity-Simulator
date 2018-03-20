@@ -1,3 +1,5 @@
+Synkronointitesti
+
 commit c7a04df1381117fa493fa30f7d6ca048ce61996f
 Author: Eero <eero.lumijarvi@gmail.com>
 Date:   Tue Mar 20 23:39:02 2018 +0200
