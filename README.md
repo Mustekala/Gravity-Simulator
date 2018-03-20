@@ -2,6 +2,8 @@
 
 *Ohjelmistotuotannon menetelmät -kurssin viikkotehtäviä sekä harjoitustyö*
 
+Testi
+
 ## Tehtävät
 
 **Viikko 1**
