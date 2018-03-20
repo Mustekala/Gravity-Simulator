@@ -1,8 +1,8 @@
-#OTM-harjoitustyö
+# OTM-harjoitustyö
 
 *Ohjelmistotuotannon menetelmät -kurssin harjoitustyö*
 
-##Tehtävät
+## Tehtävät
 
 **Viikko 1**
 
