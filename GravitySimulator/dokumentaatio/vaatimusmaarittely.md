@@ -8,7 +8,7 @@ Sovellus mahdollista kaksiulotteisten kaksiulotteista painovoimaa noudattavien j
 
 Sovellus koostuu kahdesta eri näkymästä
 
-<img src="https://raw.githubusercontent.com/Mustekala/GravitySimulator/master/dokumentaatio/kuvat/suunnitelma.png" width="750">
+<img src="https://raw.githubusercontent.com/Mustekala/otm-harjoitustyo/master/GravitySimulator/dokumentaatio/kuvat/suunnitelma.png" width="640">
 
 Sovellus aukeaa valikkonäkymään, josta voi joko luoda uuden painovoimaa noudattavan järjestelmän tai ladata aiemmin tallennetun järjestelmän. Latausvalinnan tehneelle käyttäjälle esitetään Javan valmiis tiedostovalinta. Itse sovellus piirtää reaaliaikaista kuvaa kappaleista keskelle ruutua. Mahdollinen kamera voi seurata yksittäisiä kappaleita tai sitten olla vapaasti liikuteltavissa. Vasemmassa reunassa on valikko.
 
