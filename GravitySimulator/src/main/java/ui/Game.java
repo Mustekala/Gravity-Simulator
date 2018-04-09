@@ -5,7 +5,7 @@
  */
 package ui;
 
-import domain.CelestialObject;
+import domain.*;
 import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.animation.AnimationTimer;
@@ -37,7 +37,7 @@ public class Game {
         gc.setLineWidth(5);
         
         //Background image
-        Image space = new Image( "images/space.jpg" );
+        Image space = new Image("/images/space.jpg");
 
         final long startNanoTime = System.nanoTime();
  
@@ -64,6 +64,9 @@ public class Game {
         
         final long startNanoTime = System.nanoTime();
         
+        objects.add(new Star("Sun", 300, 200, 0, 0, 1000, 10));
+        objects.add(new Planet("Earth", 300, 400, 3, 0, 1, 10));
+        
         new AnimationTimer()
         {
             @Override
@@ -76,7 +79,7 @@ public class Game {
                     objects.forEach((o2) -> {  
                         if (!o1.equals(o2)) {                           
                             //Newton's gravity law, allmost
-                            double pullForce = o1.mass * o2.mass / Math.pow(Math.pow(o2.x - o1.x, 2) + (Math.pow(o2.y - o1.y, 2)), 0.5) / 100;
+                            double pullForce = o2.mass / Math.pow(Math.pow(o2.x - o1.x, 2) + (Math.pow(o2.y - o1.y, 2)), 0.5) / 100;
                             //Angle of the gravity force
                             double angle = Math.atan2(o2.y - o1.y, o2.x - o1.x);
                             //Apply gravity in an angle

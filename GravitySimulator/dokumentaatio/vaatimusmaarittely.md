@@ -2,7 +2,7 @@
 
 ## Sovelluksen tarkoitus
 
-Sovellus mahdollista kaksiulotteisten kaksiulotteista painovoimaa noudattavien järjestelmien, kuten aurinkokunnan, luomisen. Luomiaan painovoimaa noudattavia järjestelmiä voi myös tallentaa.
+Sovellus mahdollistaa kaksiulotteisten kaksiulotteista painovoimaa noudattavien järjestelmien, kuten aurinkokunnan, luomisen. Luotuja painovoimaa noudattavia järjestelmiä voi myös tallentaa.
 
 ## Käyttöliittymäluonnos
 

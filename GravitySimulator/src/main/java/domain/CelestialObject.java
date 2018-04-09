@@ -22,16 +22,15 @@ public class CelestialObject {
     
     public Integer mass;
     public Integer size;
-    
-    public Image image = new Image( "images/earth.png" , 100, 100, true, true) {};
-    
+    public Image image;
+      
     public CelestialObject(String name, int x, int y, double xSpeed, double ySpeed, int mass, int size) {
         this.x = x;
         this.y = y;
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
         this.mass = mass;
-        this.size = size;               
+        this.size = size;           
     }
     
     public Position returnPosition() {
