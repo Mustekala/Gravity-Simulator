@@ -23,7 +23,7 @@ public class GravitysimulatorUI extends Application {
     public void start(Stage window) {
 
         Credits credits = new Credits();
-        Game game = new Game();
+        GameUI game = new GameUI();
         
         BorderPane layout = new BorderPane();
 
@@ -50,7 +50,7 @@ public class GravitysimulatorUI extends Application {
         layout.setTop(top);
 	layout.setCenter(menu);
 
-        Scene view = new Scene(layout, 800, 600);
+        Scene view = new Scene(layout, 1200, 800);
         
         //Buttons
         newGameButton.setOnAction((event) -> layout.setCenter(game.getView()));

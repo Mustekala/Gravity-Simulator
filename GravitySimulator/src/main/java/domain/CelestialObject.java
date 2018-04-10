@@ -15,16 +15,20 @@ import javafx.scene.image.Image;
 public class CelestialObject {
     
     public String name;
-    public double x;
-    public double y;
+    private double x;
+    private double y;
     public double xSpeed;
     public double ySpeed;
     
-    public Integer mass;
-    public Integer size;
-    public Image image;
-      
-    public CelestialObject(String name, int x, int y, double xSpeed, double ySpeed, int mass, int size) {
+    public double mass;
+    public double size;
+    public String image;
+    
+    //Todo
+    public int priority;
+    
+    public CelestialObject(String name, int x, int y, double xSpeed, double ySpeed, double mass, double size) {
+        this.name = name;
         this.x = x;
         this.y = y;
         this.xSpeed = xSpeed;
@@ -33,8 +37,12 @@ public class CelestialObject {
         this.size = size;           
     }
     
-    public Position returnPosition() {
-        return new Position(x, y);
+    public double getX() {
+        return x;
+    };
+    
+    public double getY() {
+        return y;
     };
     
     public void setPosition(double x, double y) {
