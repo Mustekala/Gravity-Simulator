@@ -5,4 +5,4 @@
 
 [*Työaikakirjanpito*](https://github.com/Mustekala/otm-harjoitustyo/blob/master/GravitySimulator/dokumentaatio/tyoaikakirjanpito.md)
 
-[*Arkitehtuuri*](https://github.com/Mustekala/otm-harjoitustyo/blob/master/GravitySimulator/dokumentaatio/arkkitehtuuri.md)
+[*Arkkitehtuuri*](https://github.com/Mustekala/otm-harjoitustyo/blob/master/GravitySimulator/dokumentaatio/arkkitehtuuri.md)
