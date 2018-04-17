@@ -1,0 +1,1 @@
+<img src="https://raw.githubusercontent.com/Mustekala/otm-harjoitustyo/master/GravitySimulator/dokumentaatio/kuvat/luokkakaavio.png">
