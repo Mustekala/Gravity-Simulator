@@ -12,3 +12,7 @@ Työaikakirjanpito
 
 10.4 Jatkettu pelin koodaamista, 4h
 
+10-16.4 Jatkettu pelin koodaamista, 4h
+
+17.4 Uusittu gravitaatiolasku, tehty checkstyle yms., 4h
+
