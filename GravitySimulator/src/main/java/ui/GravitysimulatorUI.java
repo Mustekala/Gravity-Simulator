@@ -57,7 +57,7 @@ public class GravitysimulatorUI extends Application {
         
         creditsButton.setOnAction((event) -> layout.setCenter(credits.getView(layout)));
         
-        returnButton.setOnAction((event) -> {;
+        returnButton.setOnAction((event) -> {
             layout.setCenter(menu);
         });
         

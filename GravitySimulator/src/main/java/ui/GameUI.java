@@ -41,9 +41,9 @@ public class GameUI {
         TextField xSpeed = new TextField();
         Label ySpeedText = new Label("ySpeed");
         TextField ySpeed = new TextField();
-        Label massText = new Label("Mass:");
+        Label massText = new Label("Mass (in Yg):");
         TextField mass = new TextField();
-        Label sizeText = new Label("Size:");
+        Label sizeText = new Label("Size (pixel = 1000km)");
         TextField size = new TextField();
         
         Button addStarButton = new Button("Add star");
@@ -75,16 +75,19 @@ public class GameUI {
         
         //Button's events
         addStarButton.setOnAction((event) -> {
-            game.addCelestialObject("star", name.getText(), Integer.parseInt(x.getText()), Integer.parseInt(y.getText()), Integer.parseInt(xSpeed.getText()), Integer.parseInt(ySpeed.getText()), Integer.parseInt(mass.getText()), Integer.parseInt(size.getText()));
+            game.addCelestialObject("star", name.getText(), Integer.parseInt(x.getText()), Integer.parseInt(y.getText()), Double.parseDouble(xSpeed.getText()), Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()));
         });
         
         addPlanetButton.setOnAction((event) -> {
-            game.addCelestialObject("planet", name.getText(), Integer.parseInt(x.getText()), Integer.parseInt(y.getText()), Integer.parseInt(xSpeed.getText()), Integer.parseInt(ySpeed.getText()), Integer.parseInt(mass.getText()), Integer.parseInt(size.getText()));
+            game.addCelestialObject("planet", name.getText(), Integer.parseInt(x.getText()), Integer.parseInt(y.getText()), Double.parseDouble(xSpeed.getText()), Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()));
         });
 
         root.setLeft(addObjectsMenu);
         root.setCenter(canvas);
-                
+        
+        game.addCelestialObject("star", "sun", 400, 300, 0, 0, 100, 100);
+        game.addCelestialObject("planet", "earth", 400, 500, 2.9, 0, 5.56, 20);
+        
         return root;
     }
        

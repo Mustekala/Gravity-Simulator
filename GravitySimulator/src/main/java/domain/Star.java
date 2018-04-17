@@ -11,7 +11,7 @@ package domain;
  */
 public class Star extends CelestialObject {
     
-    public String image = "/images/stars/star1.png";
+    String image = "/images/stars/star1.png";
     
     public Star(String name, int x, int y, double xSpeed, double ySpeed, double mass, double size) {
         super(name, x, y, xSpeed, ySpeed, mass, size);    

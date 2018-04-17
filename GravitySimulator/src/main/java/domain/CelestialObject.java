@@ -5,8 +5,6 @@
  */
 package domain;
 
-import javafx.scene.image.Image;
-
 /**
  *
  * @author eero
@@ -14,15 +12,15 @@ import javafx.scene.image.Image;
 
 public class CelestialObject {
     
-    public String name;
+    private String name;
     private double x;
     private double y;
-    public double xSpeed;
-    public double ySpeed;
+    private double xSpeed;
+    private double ySpeed;
     
-    public double mass;
-    public double size;
-    public String image;
+    private double mass;
+    private double size;
+    String image;
     
     //Todo
     public int priority;
@@ -31,10 +29,16 @@ public class CelestialObject {
         this.name = name;
         this.x = x;
         this.y = y;
+        //Pixels per iteration
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
+        //mass * 10x24, in Yottagrams
         this.mass = mass;
         this.size = size;           
+    }
+    
+    public String getName() {
+        return name;
     }
     
     public double getX() {
@@ -43,6 +47,26 @@ public class CelestialObject {
     
     public double getY() {
         return y;
+    };
+    
+    public double getXSpeed() {
+        return xSpeed;
+    };
+    
+    public double getYSpeed() {
+        return ySpeed;
+    };
+    
+    public double getMass() {
+        return mass;
+    };
+    
+    public double getSize() {
+        return size;
+    };
+    
+    public String getImage() {
+        return image;
     };
     
     public void setPosition(double x, double y) {
