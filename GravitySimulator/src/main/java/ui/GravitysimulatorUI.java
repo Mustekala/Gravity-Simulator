@@ -5,13 +5,13 @@
  */
 package ui;
 
+import domain.Game;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 /**
  *
@@ -23,8 +23,7 @@ public class GravitysimulatorUI extends Application {
     public void start(Stage window) {
 
         Credits credits = new Credits();
-        GameUI game = new GameUI();
-        
+          
         BorderPane layout = new BorderPane();
 
 	VBox menu = new VBox();
@@ -49,18 +48,30 @@ public class GravitysimulatorUI extends Application {
                  
         layout.setTop(top);
 	layout.setCenter(menu);
-
+        
         Scene view = new Scene(layout, 1200, 800);
         
+        BackgroundImage space = new BackgroundImage(new Image("/images/space.jpg",1000,1000,false,true),
+            BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+              BackgroundSize.DEFAULT);
+        layout.setBackground(new Background(space));
+        
         //Buttons
-        newGameButton.setOnAction((event) -> layout.setCenter(game.getView()));
+        newGameButton.setOnAction((event) -> {;
+            Game game = new Game();
+            GameUI gameUI = new GameUI(game);
+            GameMenu gameMenu = new GameMenu(game);
+            layout.setLeft(gameMenu.getScene());
+            layout.setCenter(gameUI.getScene());                       
+        });
         
         creditsButton.setOnAction((event) -> layout.setCenter(credits.getView(layout)));
         
-        returnButton.setOnAction((event) -> {
+        returnButton.setOnAction((event) -> {;
+            layout.setLeft(null);
             layout.setCenter(menu);
         });
-        
+               
 	window.setScene(view);
 	window.show();
     }

@@ -12,20 +12,20 @@ package domain;
 
 public class CelestialObject {
     
-    private String name;
+    private final String name;
     private double x;
     private double y;
     private double xSpeed;
     private double ySpeed;
     
-    private double mass;
-    private double size;
+    private final double mass;
+    private final double size;
     String image;
     
     //Todo
     public int priority;
     
-    public CelestialObject(String name, int x, int y, double xSpeed, double ySpeed, double mass, double size) {
+    CelestialObject(String name, int x, int y, double xSpeed, double ySpeed, double mass, double size) {
         this.name = name;
         this.x = x;
         this.y = y;

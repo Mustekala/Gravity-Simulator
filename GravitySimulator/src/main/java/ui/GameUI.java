@@ -6,89 +6,55 @@
 package ui;
 
 import domain.Game;
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
+import javafx.animation.AnimationTimer;
+import javafx.scene.ParallelCamera;
+import javafx.scene.PerspectiveCamera;
+import javafx.scene.SubScene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 
 public class GameUI {
-
-    public Parent getView() {      
-        BorderPane root = new BorderPane();
-        Canvas canvas = new Canvas(1200, 1000);
+    
+    Game game;
+    
+    public GameUI(Game game) {
+        this.game = game;
+    }
+    
+    public SubScene getScene() {      
+        BorderPane gamePane = new BorderPane();
+        
+        Canvas canvas = new Canvas(1000, 800);
+        
+        BackgroundImage space = new BackgroundImage(new Image("/images/space.jpg",1000,1000,false,true),
+            BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+              BackgroundSize.DEFAULT);
+        gamePane.setBackground(new Background(space));
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        Game game = new Game(gc);
-        
-        VBox addObjectsMenu = new VBox();
-        addObjectsMenu.setSpacing(5);
-        addObjectsMenu.setPadding(new Insets(5, 5, 5, 5));
-        
-        //Add objects-menu
-        Label menuText = new Label("Add objects");
-        Label nameText = new Label("Name:");
-        TextField name = new TextField();
-        Label xText = new Label("x:");
-        TextField x = new TextField();
-        Label yText = new Label("y:");
-        TextField y = new TextField();
-        Label xSpeedText = new Label("xSpeed");
-        TextField xSpeed = new TextField();
-        Label ySpeedText = new Label("ySpeed");
-        TextField ySpeed = new TextField();
-        Label massText = new Label("Mass (in Yg):");
-        TextField mass = new TextField();
-        Label sizeText = new Label("Size (pixel = 1000km)");
-        TextField size = new TextField();
-        
-        Button addStarButton = new Button("Add star");
-        Button addPlanetButton = new Button("Add planet");
-        
-        addObjectsMenu.getChildren().add(nameText);
-        addObjectsMenu.getChildren().add(name);
-        
-        addObjectsMenu.getChildren().add(xText);
-        addObjectsMenu.getChildren().add(x);
-        
-        addObjectsMenu.getChildren().add(yText);
-        addObjectsMenu.getChildren().add(y);
-        
-        addObjectsMenu.getChildren().add(xSpeedText);
-        addObjectsMenu.getChildren().add(xSpeed);
-        
-        addObjectsMenu.getChildren().add(ySpeedText);
-        addObjectsMenu.getChildren().add(ySpeed);
-        
-        addObjectsMenu.getChildren().add(massText);
-        addObjectsMenu.getChildren().add(mass);
-        
-        addObjectsMenu.getChildren().add(sizeText);
-        addObjectsMenu.getChildren().add(size);
-        
-        addObjectsMenu.getChildren().add(addStarButton);
-        addObjectsMenu.getChildren().add(addPlanetButton);
-        
-        //Button's events
-        addStarButton.setOnAction((event) -> {
-            game.addCelestialObject("star", name.getText(), Integer.parseInt(x.getText()), Integer.parseInt(y.getText()), Double.parseDouble(xSpeed.getText()), Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()));
-        });
-        
-        addPlanetButton.setOnAction((event) -> {
-            game.addCelestialObject("planet", name.getText(), Integer.parseInt(x.getText()), Integer.parseInt(y.getText()), Double.parseDouble(xSpeed.getText()), Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()));
-        });
 
-        root.setLeft(addObjectsMenu);
-        root.setCenter(canvas);
+        gamePane.setCenter(canvas);
+
+        SubScene gameScene = new SubScene(gamePane, 1000, 800);
         
-        game.addCelestialObject("star", "sun", 400, 300, 0, 0, 100, 100);
-        game.addCelestialObject("planet", "earth", 400, 500, 2.9, 0, 5.56, 20);
+        //TODO controls
+        PerspectiveCamera camera = new PerspectiveCamera();
+        camera.setTranslateZ(0);
+        camera.setNearClip(0.1);
+        camera.setFarClip(2000.0);
+        gameScene.setCamera(camera);
+
+        game.startUpdate();
+        game.startDraw(gc);
         
-        return root;
+        return gameScene;
     }
-       
+
 }

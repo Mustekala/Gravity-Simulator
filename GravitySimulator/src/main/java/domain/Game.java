@@ -20,40 +20,40 @@ public final class Game {
     public ArrayList<CelestialObject> objects;
     private AnimationTimer draw;
     private AnimationTimer update;
-    
-    public Game(GraphicsContext gc) {
-        objects = new ArrayList<>();
-        startDraw(gc);
-        startUpdate();
-    }
-    
+
     public Game() {
         objects = new ArrayList<>();
-        startUpdate();
     }
     
     private void load(GraphicsContext gc) {
         
     }
     
-    private void startDraw(GraphicsContext gc) {      
+    public void startDraw(GraphicsContext gc) {      
         gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLUE);
         gc.setLineWidth(5);      
-        draw = new AnimationTimer()
-        {
+        draw = new AnimationTimer() {
             @Override
-            public void handle(long currentNanoTime)
-            {   
-                //Background image
-                Image space = new Image("/images/space.jpg");
-                gc.drawImage( space, 0, 0 ); 
+            public void handle(long currentNanoTime) {
+                gc.clearRect(0, 0, 1000, 1000);
                 int i = 2;
                 for (CelestialObject o : objects) {    
                     Image image = new Image(o.image);
                     gc.drawImage( image, (int) o.getX() - o.getSize() / 2, (int) o.getY() - o.getSize() / 2, o.getSize(), o.getSize());
+                    //Print info of object TODO Add these to a separate ui
                     gc.fillText("Objects:", 0, 600);
+                    //Name
                     gc.fillText(o.getName(), 40 * i, 600);
+                    //X
+                    gc.fillText("X:", 0, 615);
+                    gc.fillText(Integer.toString((int) o.getX()), 40 * i, 615);
+                    //Y
+                    gc.fillText("Y:", 0, 630);
+                    gc.fillText(Integer.toString((int) o.getY()), 40 * i, 630);
+                    //Mass
+                    gc.fillText("Mass (Yg):", 0, 645);
+                    gc.fillText(Integer.toString((int) o.getMass()), 40 * i, 645);
                     i++;
                 }                
             }
@@ -63,11 +63,9 @@ public final class Game {
     
     public void startUpdate() {
 
-        update = new AnimationTimer()
-        {
+        update = new AnimationTimer() {
             @Override
-            public void handle(long currentNanoTime)
-            {
+            public void handle(long currentNanoTime) {
                 //Calculate gravity for all objects
                 objects.forEach((o1) -> {
                     objects.forEach((o2) -> {  
@@ -85,11 +83,9 @@ public final class Game {
                             o1.setSpeed(o1.getXSpeed() + pullForce * Math.cos(angle), o1.getYSpeed() + pullForce * Math.sin(angle));
                         }
                     });
-                });
-                //Move all objects
-                objects.forEach((o) -> {
-                    o.setPosition(o.getX() + o.getXSpeed(), o.getY() + o.getYSpeed());
-                });   
+                    //Move the object
+                    o1.setPosition(o1.getX() + o1.getXSpeed(), o1.getY() + o1.getYSpeed());
+                });  
             }
         };
         update.start();
@@ -103,6 +99,7 @@ public final class Game {
     public Boolean addCelestialObject(String type, String name, int x, int y, double xSpeed, double ySpeed, double mass, double size) {
         String fixedName = name;
         
+        //Todo actual amount
         if (findCelestialObject(name) != null) {            
             fixedName = fixedName + "1";
         }
