@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package gravitysimulator.domain;
 
 import java.util.ArrayList;
 import javafx.animation.AnimationTimer;

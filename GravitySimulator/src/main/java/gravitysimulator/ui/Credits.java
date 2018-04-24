@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui;
+package gravitysimulator.ui;
 
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -26,7 +24,7 @@ public class Credits {
         
 	VBox buttons = new VBox();
 
-	HBox texts = new HBox();
+	VBox texts = new VBox();
 	texts.setSpacing(10);
 	
         texts.getChildren().add(new Label("Programming"));

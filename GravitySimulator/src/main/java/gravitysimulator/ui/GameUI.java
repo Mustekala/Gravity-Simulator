@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui;
+package gravitysimulator.ui;
 
-import domain.Game;
-import javafx.animation.AnimationTimer;
-import javafx.scene.ParallelCamera;
+import gravitysimulator.domain.Game;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.SubScene;
 import javafx.scene.canvas.Canvas;
