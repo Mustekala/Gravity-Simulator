@@ -16,3 +16,6 @@ Työaikakirjanpito
 
 17.4 Uusittu gravitaatiolasku, tehty checkstyle yms., 4h
 
+23.4 Testailtu kameran toimintaa, korjattu virheitä, 2h
+
+24.4 Korjattu pakkausrakenne, lisätty release, lisätty testausta, parannettu koodia, 5h
