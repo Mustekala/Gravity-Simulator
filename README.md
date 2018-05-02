@@ -5,6 +5,8 @@
 
 [*Työaikakirjanpito*](https://github.com/Mustekala/otm-harjoitustyo/blob/master/GravitySimulator/dokumentaatio/tyoaikakirjanpito.md)
 
+[*Käyttöohje*](https://github.com/Mustekala/otm-harjoitustyo/blob/master/GravitySimulator/dokumentaatio/kayttoohje.md)
+
 [*Arkkitehtuuri*](https://github.com/Mustekala/otm-harjoitustyo/blob/master/GravitySimulator/dokumentaatio/arkkitehtuuri.md)
 
 [*Week 5 & 6 releases*](https://github.com/Mustekala/otm-harjoitustyo/releases)
