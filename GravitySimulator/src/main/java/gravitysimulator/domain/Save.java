@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author eero
+ * Save provides saving functionality.
  */
 public class Save {
     
@@ -26,6 +27,10 @@ public class Save {
         celestialObjects = new CelestialObjectDao(database); 
     }
     
+    /**
+    * saveGame saves all the objects from the game into database.
+    * @param objects all the objects from game
+    */
     public void saveGame(ArrayList<CelestialObject> objects) throws SQLException {
         celestialObjects.clearTable();
         celestialObjects.createTable();

@@ -13,11 +13,16 @@ import javafx.scene.layout.VBox;
 /**
  *
  * @author eero
+ * Credits shows credits for CC-licensed stuff and for the creator :D
  */
 public class Credits {
     
     public Credits() {}
     
+    /**
+    *
+    * Creates the credit layout
+    */  
     public Parent getView(Parent previous) {
 	BorderPane layout = new BorderPane();
         

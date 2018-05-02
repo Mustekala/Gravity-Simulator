@@ -8,6 +8,7 @@ package gravitysimulator.domain;
 /**
  *
  * @author eero
+ * Star is the subclass for all stars in game
  */
 public class Star extends CelestialObject {
     

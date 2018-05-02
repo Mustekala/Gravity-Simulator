@@ -8,6 +8,7 @@ package gravitysimulator.domain;
 /**
  *
  * @author eero
+ * CelestialObject is the superclass for all objects in game
  */
 
 public class CelestialObject {

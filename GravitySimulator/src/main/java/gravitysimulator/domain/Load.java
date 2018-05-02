@@ -13,6 +13,7 @@ import java.util.List;
 /**
  *
  * @author eero
+ * Load provides loading functionality
  */
 public class Load {
         
@@ -24,6 +25,10 @@ public class Load {
         celestialObjects = new CelestialObjectDao(database); 
     }
     
+    /**
+    * loadGame loads all the objects from the database table celestialObject.
+    * @return objects all the objects from the database table celestialObject
+    */
     public List<CelestialObject> loadGame() throws SQLException {
         return celestialObjects.findAll();
     }

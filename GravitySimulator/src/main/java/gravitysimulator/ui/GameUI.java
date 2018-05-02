@@ -21,6 +21,10 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 
+
+/**
+* GameUI combines the game interface and the game menu
+*/
 public class GameUI {
     
     Game game;
@@ -29,6 +33,10 @@ public class GameUI {
         this.game = game;
     }
     
+    /**
+    * Returns the game as a SubScene
+    * @return SubScene the game scene
+    */
     public SubScene getScene() {      
         BorderPane gamePane = new BorderPane();
         

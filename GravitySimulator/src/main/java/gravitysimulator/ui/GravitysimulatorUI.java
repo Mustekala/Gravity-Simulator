@@ -21,11 +21,18 @@ import javafx.stage.Stage;
 /**
  *
  * @author eero
+ * Class provides the backbone of the UI, and functions as main menu
  */
+
 public class GravitysimulatorUI extends Application {
     
     Game game;
     
+    
+    /**
+    *
+    * Creates the program layout
+    */  
     @Override
     public void start(Stage window) throws Exception {
 

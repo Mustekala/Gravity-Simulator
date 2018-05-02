@@ -23,6 +23,7 @@ import javafx.scene.layout.VBox;
 /**
  *
  * @author eero
+ * Game menu provides functionality to add objects into the system, and to save the system
  */
 public class GameMenu {
     
