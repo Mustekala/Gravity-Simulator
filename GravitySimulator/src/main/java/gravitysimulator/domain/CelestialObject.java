@@ -12,6 +12,7 @@ package gravitysimulator.domain;
 
 public class CelestialObject {
     
+    private Integer id;
     private final String name;
     private double x;
     private double y;
@@ -25,7 +26,8 @@ public class CelestialObject {
     //Todo
     public int priority;
     
-    CelestialObject(String name, int x, int y, double xSpeed, double ySpeed, double mass, double size) {
+    CelestialObject(Integer id, String name, int x, int y, double xSpeed, double ySpeed, double mass, double size, int priority) {
+        this.id = id;
         this.name = name;
         this.x = x;
         this.y = y;
@@ -34,13 +36,26 @@ public class CelestialObject {
         this.ySpeed = ySpeed;
         //mass * 10x24, in Yottagrams
         this.mass = mass;
-        this.size = size;           
+        this.size = size;      
+        this.priority = priority;
     }
+    
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+    public String getType() {
+        return null;
+    };
     
     public String getName() {
         return name;
     }
-    
+     
     public double getX() {
         return x;
     };
@@ -63,6 +78,10 @@ public class CelestialObject {
     
     public double getSize() {
         return size;
+    };
+    
+    public int getPriority() {
+        return priority;
     };
     
     public String getImage() {

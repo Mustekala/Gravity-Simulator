@@ -13,9 +13,13 @@ public class Star extends CelestialObject {
     
     String image = "/images/stars/star1.png";
     
-    public Star(String name, int x, int y, double xSpeed, double ySpeed, double mass, double size) {
-        super(name, x, y, xSpeed, ySpeed, mass, size);    
+    public Star(int id, String name, int x, int y, double xSpeed, double ySpeed, double mass, double size, int priority) {
+        super(id, name, x, y, xSpeed, ySpeed, mass, size, priority);    
         super.image = image;
     }
-
+    
+    @Override
+    public String getType() {
+        return "star";
+    }
 }

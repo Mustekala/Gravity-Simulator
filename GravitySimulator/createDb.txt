@@ -1,0 +1,12 @@
+CREATE TABLE celestialObject (
+	id integer PRIMARY KEY,
+	type varchar(10),
+	name varchar(50),
+	x integer,
+	y integer,
+	xSpeed real,
+	ySpeed real,
+	mass real,
+	size real,
+	priority integer	
+)

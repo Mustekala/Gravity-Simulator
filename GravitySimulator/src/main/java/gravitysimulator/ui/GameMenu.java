@@ -5,7 +5,10 @@
  */
 package gravitysimulator.ui;
 
+import gravitysimulator.dao.CelestialObjectDao;
+import gravitysimulator.database.Database;
 import gravitysimulator.domain.Game;
+import gravitysimulator.domain.Save;
 import javafx.geometry.Insets;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
@@ -21,9 +24,11 @@ import javafx.scene.layout.VBox;
 public class GameMenu {
     
     Game game;
+    Save save;
     
-    public GameMenu(Game game) {
-        this.game = game;
+    public GameMenu(Game game) throws Exception {
+        this.game = game;  
+        this.save = new Save();
     }
     
     public SubScene getScene() {      
@@ -49,7 +54,9 @@ public class GameMenu {
         TextField mass = new TextField();
         Label sizeText = new Label("Size (pixel = 1000km):");
         TextField size = new TextField();
-        
+        Label priorityText = new Label("Priority:");
+        TextField priority = new TextField();
+              
         Button addStarButton = new Button("Add star");
         Button addPlanetButton = new Button("Add planet");
         
@@ -74,24 +81,40 @@ public class GameMenu {
         addObjectsMenu.getChildren().add(sizeText);
         addObjectsMenu.getChildren().add(size);
         
+        addObjectsMenu.getChildren().add(priorityText);
+        addObjectsMenu.getChildren().add(priority);
+        
         addObjectsMenu.getChildren().add(addStarButton);
         addObjectsMenu.getChildren().add(addPlanetButton);
         
+        //Saving menu
+        VBox saveMenu = new VBox();
+        saveMenu.setSpacing(5);
+        saveMenu.setPadding(new Insets(5, 5, 5, 5));
+        
+        Button saveButton = new Button("Save current game");
+        saveMenu.getChildren().add(saveButton);
+        
         //Button's events
         addStarButton.setOnAction((event) -> {
-            game.addCelestialObject("star", name.getText(), Integer.parseInt(x.getText()), Integer.parseInt(y.getText()), Double.parseDouble(xSpeed.getText()), Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()));
+            game.addCelestialObject("star", name.getText(), Integer.parseInt(x.getText()), Integer.parseInt(y.getText()), Double.parseDouble(xSpeed.getText()),
+                    Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()), Integer.parseInt(priority.getText()));
         });
         
         addPlanetButton.setOnAction((event) -> {
-            game.addCelestialObject("planet", name.getText(), Integer.parseInt(x.getText()), Integer.parseInt(y.getText()), Double.parseDouble(xSpeed.getText()), Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()));
+            game.addCelestialObject("planet", name.getText(), Integer.parseInt(x.getText()), Integer.parseInt(y.getText()), Double.parseDouble(xSpeed.getText()),
+                    Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()), Integer.parseInt(priority.getText()));
         });
         
-        game.addCelestialObject("star", "sun", 400, 300, 0, 0, 100, 100);
-        game.addCelestialObject("planet", "earth", 400, 500, 2.9, 0, 5.56, 20);
-        
+        //Save the game using DAO
+        saveButton.setOnAction((event) -> {
+            save.saveGame(game.objects);
+        });
+
         menu.setLeft(addObjectsMenu);
-          
-        SubScene menuScene = new SubScene(menu, 200, 800);
+        menu.setBottom(saveMenu);
+        
+        SubScene menuScene = new SubScene(menu, 200, 770);
    
         return menuScene;
     }

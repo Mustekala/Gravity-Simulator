@@ -28,32 +28,32 @@ public class GameTest {
 
     @Test
     public void canAddStars() {
-        game.addCelestialObject("star", "sun", 0, 0, 0, 0, 0, 0);
+        game.addCelestialObject("star", "sun", 0, 0, 0, 0, 0, 0, 1);
         assertEquals(1, game.objects.size());
     }
     
     @Test
     public void canAddPlanets() {
-        game.addCelestialObject("planet", "mars", 0, 0, 0, 0, 0, 0);
+        game.addCelestialObject("planet", "mars", 0, 0, 0, 0, 0, 0, 1);
         assertEquals(1, game.objects.size());
     }
     
     @Test
     public void cantAddNonStarsOrNonPlanets() {
-        game.addCelestialObject("teapot", "teatime", 0, 0, 0, 0, 0, 0);
+        game.addCelestialObject("teapot", "teatime", 0, 0, 0, 0, 0, 0, 1);
         assertEquals(0, game.objects.size());
     }
     
     @Test
     public void canRemoveObjects() {
-        game.addCelestialObject("star", "sun", 0, 0, 0, 0, 0, 0);
+        game.addCelestialObject("star", "sun", 0, 0, 0, 0, 0, 0, 1);
         game.removeCelestialObject("sun");
         assertEquals(0, game.objects.size());
     }
     
     @Test
     public void canFindObjects() {
-        game.addCelestialObject("star", "sun", 0, 0, 0, 0, 0, 0);       
+        game.addCelestialObject("star", "sun", 0, 0, 0, 0, 0, 0, 1);       
         assertEquals("sun", game.findCelestialObject("sun").getName());
     }
 }

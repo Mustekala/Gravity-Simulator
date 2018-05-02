@@ -6,8 +6,6 @@ package gravitysimulator.domain;
  * and open the template in the editor.
  */
 
-import gravitysimulator.domain.Planet;
-import gravitysimulator.domain.Star;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +21,7 @@ public class CelestialObjectTest {
     
     @Before
     public void setUp() {
-        star = new Star("sun", 400, 300, -10, 0, 100, 100);
+        star = new Star(1, "sun", 400, 300, -10, 0, 100, 100, 1);
     }
     
     @After
@@ -32,7 +30,7 @@ public class CelestialObjectTest {
     
     @Test
     public void canGetName() {
-        Planet planet =  new Planet("earth", 400, 300, 0, 0, 100, 10);
+        Planet planet =  new Planet(1, "earth", 400, 300, 0, 0, 100, 10, 1);
         assertEquals("earth", planet.getName());
     }
     

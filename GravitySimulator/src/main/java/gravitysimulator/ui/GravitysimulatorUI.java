@@ -5,7 +5,12 @@
  */
 package gravitysimulator.ui;
 
+import gravitysimulator.domain.CelestialObject;
 import gravitysimulator.domain.Game;
+import gravitysimulator.domain.Load;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,11 +24,16 @@ import javafx.stage.Stage;
  */
 public class GravitysimulatorUI extends Application {
     
+    Game game;
+    
     @Override
-    public void start(Stage window) {
+    public void start(Stage window) throws Exception {
 
         Credits credits = new Credits();
-          
+        
+        //class for loading save TODO if time saves?
+        Load load = new Load();
+                   
         BorderPane layout = new BorderPane();
 
 	VBox menu = new VBox();
@@ -57,17 +67,35 @@ public class GravitysimulatorUI extends Application {
         layout.setBackground(new Background(space));
         
         //Buttons
-        newGameButton.setOnAction((event) -> {;
-            Game game = new Game();
-            GameUI gameUI = new GameUI(game);
-            GameMenu gameMenu = new GameMenu(game);
-            layout.setLeft(gameMenu.getScene());
-            layout.setCenter(gameUI.getScene());                       
+        newGameButton.setOnAction((event) -> {
+            try {
+                game = new Game();
+                GameUI gameUI = new GameUI(game);
+                GameMenu gameMenu = new GameMenu(game);
+                layout.setLeft(gameMenu.getScene());                       
+                layout.setCenter(gameUI.getScene());
+            } catch (Exception ex) {
+                Logger.getLogger(GravitysimulatorUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        loadSaveButton.setOnAction((event) -> {
+            try {
+                game = new Game();
+                GameUI gameUI = new GameUI(game);
+                GameMenu gameMenu = new GameMenu(game);
+                game.objects = (ArrayList<CelestialObject>) load.loadGame();
+                layout.setLeft(gameMenu.getScene());                       
+                layout.setCenter(gameUI.getScene());
+            } catch (Exception ex) {
+                Logger.getLogger(GravitysimulatorUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         
         creditsButton.setOnAction((event) -> layout.setCenter(credits.getView(layout)));
         
-        returnButton.setOnAction((event) -> {;
+        returnButton.setOnAction((event) -> {
+            game.stop();
             layout.setLeft(null);
             layout.setCenter(menu);
         });
@@ -76,8 +104,4 @@ public class GravitysimulatorUI extends Application {
 	window.show();
     }
     
-    public static void main(String[] args) {
-        launch(GravitysimulatorUI.class);
-    }
-
 }

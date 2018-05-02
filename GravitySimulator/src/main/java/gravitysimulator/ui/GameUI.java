@@ -6,11 +6,14 @@
 package gravitysimulator.ui;
 
 import gravitysimulator.domain.Game;
+import javafx.event.EventHandler;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.SubScene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -51,6 +54,12 @@ public class GameUI {
 
         game.startUpdate();
         game.startDraw(gc);
+        
+        gameScene.setOnKeyPressed((KeyEvent event) -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                System.out.println("Enter Pressed");
+            }
+        });
         
         return gameScene;
     }
