@@ -17,7 +17,8 @@ Load save-valinta ei toimi ennen kuin käyttäjä tallentaa järjestelmän.
 
 ### Peli
 
-Pelin vasemmalla puolella on kenttiä, joilla voi luoda uuden kappaleen. Näkyvan alueen keskikohdan kordinaatit ovat x:500 y:400.
+Pelin vasemmalla puolella on kenttiä, joilla voi luoda uuden kappaleen. 
+Näkyvan alueen keskikohdan kordinaatit ovat x:500 y:400.
 Nopeudet kertovat kappaleen liikkeen määrän pikseleinä kyseiseen suuntaan per iteraatio. Nopeudet kannataa pitää pieninä (<5), jos
 haluaa näkyvän kiertoradan. Mass vaikuttaa kappaleen painovoiman voimakkuuteen,
 size on kappaleen halkaisija pikseleinä. Priority määrittää, monenko iteraation välein kappaleen liikesuunta päivitetään.
