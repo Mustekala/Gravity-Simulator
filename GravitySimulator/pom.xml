@@ -37,7 +37,7 @@
                 <version>0.8.0</version>
                 <configuration>
                     <excludes>
-                        <exclude>gravitysimulator.ui/*</exclude>
+                        <exclude>ui/**/*</exclude>
                     </excludes>
                 </configuration> 
                 <executions>

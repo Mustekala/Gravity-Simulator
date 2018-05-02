@@ -20,4 +20,8 @@ Työaikakirjanpito
 
 24.4 Korjattu pakkausrakenne, lisätty release, lisätty testausta, parannettu koodia, 5h
 
-Käytetyt tunnit yhteensä: 29,5h
+29.4 Tehty tallennusominaisuutta, 4h
+
+2.5 Jatkettu tallennusominaisuutta, tehty viikon 6 vaatimuksia, 8h
+
+Käytetyt tunnit yhteensä: 41,5h

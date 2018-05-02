@@ -9,6 +9,9 @@ import gravitysimulator.dao.CelestialObjectDao;
 import gravitysimulator.database.Database;
 import gravitysimulator.domain.Game;
 import gravitysimulator.domain.Save;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
@@ -108,7 +111,11 @@ public class GameMenu {
         
         //Save the game using DAO
         saveButton.setOnAction((event) -> {
-            save.saveGame(game.objects);
+            try {
+                save.saveGame(game.objects);
+            } catch (SQLException ex) {
+                Logger.getLogger(GameMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
 
         menu.setLeft(addObjectsMenu);
