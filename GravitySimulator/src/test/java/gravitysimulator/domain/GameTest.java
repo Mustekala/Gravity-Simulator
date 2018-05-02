@@ -17,7 +17,7 @@ import org.junit.Test;
 public class GameTest {
     Game game;
     
-        @Before
+    @Before
     public void setUp() {
         game = new Game();
     }
@@ -56,4 +56,5 @@ public class GameTest {
         game.addCelestialObject("star", "sun", 0, 0, 0, 0, 0, 0, 1);       
         assertEquals("sun", game.findCelestialObject("sun").getName());
     }
+    
 }

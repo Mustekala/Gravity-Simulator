@@ -93,7 +93,7 @@ public final class Game {
                     //Move the object
                     o1.setPosition(o1.getX() + o1.getXSpeed(), o1.getY() + o1.getYSpeed());
                 });  
-            }
+            }            
         };
         update.start();
     }

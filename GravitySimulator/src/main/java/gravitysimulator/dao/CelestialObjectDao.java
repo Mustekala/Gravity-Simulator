@@ -88,18 +88,23 @@ public class CelestialObjectDao implements Dao<CelestialObject, Integer> {
     
     public void clearTable() throws SQLException {
         try (Connection conn = database.getConnection()) {
-            conn.prepareStatement("DROP TABLE celestialObject").executeUpdate();
+            conn.prepareStatement("DROP TABLE IF EXISTS celestialObject").executeUpdate();
+        }
+    }
+    
+    public void createTable() throws SQLException {
+        try (Connection conn = database.getConnection()) {
             conn.prepareStatement("CREATE TABLE celestialObject (\n" +
-                                "	id integer PRIMARY KEY,\n" +
-                                "	type varchar(10),\n" +
-                                "	name varchar(50),\n" +
-                                "	x integer,\n" +
-                                "	y integer,\n" +
-                                "	xSpeed real,\n" +
-                                "	ySpeed real,\n" +
-                                "	mass real,\n" +
-                                "	size real,\n" +
-                                "	priority integer)").executeUpdate();
+                                    "	id integer PRIMARY KEY,\n" +
+                                    "	type varchar(10),\n" +
+                                    "	name varchar(50),\n" +
+                                    "	x integer,\n" +
+                                    "	y integer,\n" +
+                                    "	xSpeed real,\n" +
+                                    "	ySpeed real,\n" +
+                                    "	mass real,\n" +
+                                    "	size real,\n" +
+                                    "	priority integer)").executeUpdate();
         }
     }
     

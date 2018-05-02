@@ -28,6 +28,7 @@ public class Save {
     
     public void saveGame(ArrayList<CelestialObject> objects) throws SQLException {
         celestialObjects.clearTable();
+        celestialObjects.createTable();
         objects.forEach((object) -> {
             try {               
                 celestialObjects.saveOrUpdate(object);
