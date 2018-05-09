@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 public class GravitysimulatorUI extends Application {
     
     Game game;
-    
+    GameUI gameUI;
     
     /**
     *
@@ -76,11 +76,12 @@ public class GravitysimulatorUI extends Application {
         //Buttons
         newGameButton.setOnAction((event) -> {
             try {
-                game = new Game();
-                GameUI gameUI = new GameUI(game);
+                gameUI = new GameUI();
+                game = new Game(gameUI);          
                 GameMenu gameMenu = new GameMenu(game);
                 layout.setLeft(gameMenu.getScene());                       
-                layout.setCenter(gameUI.getScene());
+                layout.setCenter(gameUI.getScene());          
+                game.startUpdate();
             } catch (Exception ex) {
                 Logger.getLogger(GravitysimulatorUI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -88,12 +89,13 @@ public class GravitysimulatorUI extends Application {
         
         loadSaveButton.setOnAction((event) -> {
             try {
-                game = new Game();
-                GameUI gameUI = new GameUI(game);
+                gameUI = new GameUI();
+                game = new Game(gameUI);
                 GameMenu gameMenu = new GameMenu(game);
                 game.objects = (ArrayList<CelestialObject>) load.loadGame();
                 layout.setLeft(gameMenu.getScene());                       
                 layout.setCenter(gameUI.getScene());
+                game.startUpdate();
             } catch (Exception ex) {
                 Logger.getLogger(GravitysimulatorUI.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -5,7 +5,9 @@
  */
 package gravitysimulator.ui;
 
+import gravitysimulator.domain.CelestialObject;
 import gravitysimulator.domain.Game;
+import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.SubScene;
@@ -20,17 +22,17 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 
 
 /**
 * GameUI combines the game interface and the game menu
 */
 public class GameUI {
+
+    private GraphicsContext gc;
     
-    Game game;
-    
-    public GameUI(Game game) {
-        this.game = game;
+    public GameUI() {
     }
     
     /**
@@ -47,7 +49,7 @@ public class GameUI {
               BackgroundSize.DEFAULT);
         gamePane.setBackground(new Background(space));
         
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc = canvas.getGraphicsContext2D();
 
         gamePane.setCenter(canvas);
 
@@ -60,9 +62,6 @@ public class GameUI {
         camera.setFarClip(2000.0);
         gameScene.setCamera(camera);
 
-        game.startUpdate();
-        game.startDraw(gc);
-        
         gameScene.setOnKeyPressed((KeyEvent event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 System.out.println("Enter Pressed");
@@ -71,5 +70,37 @@ public class GameUI {
         
         return gameScene;
     }
+
+        
+    /**
+    *
+    *  Draws all the objects in the game.
+     * @param game the game to draw
+    */
+    public void drawGame(Game game) {      
+        gc.setFill(Color.GREEN);
+        gc.setStroke(Color.BLUE);
+        gc.setLineWidth(5);      
+        gc.clearRect(0, 0, 1000, 1000);
+        int i = 2;
+        for (CelestialObject o : game.objects) {    
+            Image image = new Image(o.getImage());
+            gc.drawImage( image, (int) o.getX() - o.getSize() / 2, (int) o.getY() - o.getSize() / 2, o.getSize(), o.getSize());
+            //Print info of object TODO Add these to a separate ui
+            gc.fillText("Objects:", 0, 600);
+            //Name
+            gc.fillText(o.getName(), 40 * i, 600);
+            //X
+            gc.fillText("X:", 0, 615);
+            gc.fillText(Integer.toString((int) o.getX()), 40 * i, 615);
+            //Y
+            gc.fillText("Y:", 0, 630);
+            gc.fillText(Integer.toString((int) o.getY()), 40 * i, 630);
+            //Mass
+            gc.fillText("Mass (Yg):", 0, 645);
+            gc.fillText(Integer.toString((int) o.getMass()), 40 * i, 645);
+            i++;
+        }                
+    }   
 
 }

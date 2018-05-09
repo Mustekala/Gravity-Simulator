@@ -5,6 +5,7 @@
  */
 package gravitysimulator.domain;
 
+import gravitysimulator.ui.GameUI;
 import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
@@ -19,72 +20,38 @@ import javafx.scene.paint.Color;
 public final class Game {
     
     public ArrayList<CelestialObject> objects;
-    private AnimationTimer draw;
     private AnimationTimer update;
+    private final GameUI ui;
     private int i = 0;
+    private final Game game;
     
-    public Game() {
+    public Game(GameUI ui) {
+        this.ui = ui;
         objects = new ArrayList<>();
+        game = this;
     }
     
-    private void load(GraphicsContext gc) {
+    private void load() {
         
     }
-    
-    /**
-    *
-    *  Draws all the objects in the game.
-     * @param gc the GraphicsContext to draw to from GameUI
-    */
-    public void startDraw(GraphicsContext gc) {      
-        gc.setFill(Color.GREEN);
-        gc.setStroke(Color.BLUE);
-        gc.setLineWidth(5);      
-        draw = new AnimationTimer() {
-            @Override
-            public void handle(long currentNanoTime) {
-                gc.clearRect(0, 0, 1000, 1000);
-                int i = 2;
-                for (CelestialObject o : objects) {    
-                    Image image = new Image(o.image);
-                    gc.drawImage( image, (int) o.getX() - o.getSize() / 2, (int) o.getY() - o.getSize() / 2, o.getSize(), o.getSize());
-                    //Print info of object TODO Add these to a separate ui
-                    gc.fillText("Objects:", 0, 600);
-                    //Name
-                    gc.fillText(o.getName(), 40 * i, 600);
-                    //X
-                    gc.fillText("X:", 0, 615);
-                    gc.fillText(Integer.toString((int) o.getX()), 40 * i, 615);
-                    //Y
-                    gc.fillText("Y:", 0, 630);
-                    gc.fillText(Integer.toString((int) o.getY()), 40 * i, 630);
-                    //Mass
-                    gc.fillText("Mass (Yg):", 0, 645);
-                    gc.fillText(Integer.toString((int) o.getMass()), 40 * i, 645);
-                    i++;
-                }                
-            }
-        };   
-        draw.start();
-    }
-    
+ 
     /**
     *
     *  Updates all the objects in the game.
     */
     public void startUpdate() {
-  
-        update = new AnimationTimer() {
 
+        update = new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
                 //Calculate gravity for all objects
                 objects.forEach((o1) -> {   
-                    applyGravity(o1);
+                    //applyGravity(o1);
                     //Move the object
                     o1.setPosition(o1.getX() + o1.getXSpeed(), o1.getY() + o1.getYSpeed());
-                });  
-            }            
+                });
+                ui.drawGame(game);
+            }               
         };
         update.start();
     }
@@ -119,8 +86,7 @@ public final class Game {
     /**
     * Stops updating the game
     */
-    public void stop() {
-        draw.stop();
+    public void stop() {      
         update.stop();
     }
     
