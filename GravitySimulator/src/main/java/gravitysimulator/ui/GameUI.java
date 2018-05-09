@@ -7,8 +7,7 @@ package gravitysimulator.ui;
 
 import gravitysimulator.domain.CelestialObject;
 import gravitysimulator.domain.Game;
-import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
+import java.util.ArrayList;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.SubScene;
 import javafx.scene.canvas.Canvas;
@@ -31,6 +30,8 @@ import javafx.scene.paint.Color;
 public class GameUI {
 
     private GraphicsContext gc;
+    private Image star;
+    private Image planet;
     
     public GameUI() {
     }
@@ -49,8 +50,10 @@ public class GameUI {
               BackgroundSize.DEFAULT);
         gamePane.setBackground(new Background(space));
         
+        loadImages();
+        
         gc = canvas.getGraphicsContext2D();
-
+             
         gamePane.setCenter(canvas);
 
         SubScene gameScene = new SubScene(gamePane, 1000, 800);
@@ -67,11 +70,19 @@ public class GameUI {
                 System.out.println("Enter Pressed");
             }
         });
-        
+      
         return gameScene;
     }
 
-        
+    /**
+    *
+    *  Loads all the images from the images folder TODO maybe something cleaner?
+    */
+    public void loadImages() {
+        star = new Image("/images/stars/star1.png");
+        planet = new Image("/images/planets/earth.png");
+    }
+    
     /**
     *
     *  Draws all the objects in the game.
@@ -84,8 +95,11 @@ public class GameUI {
         gc.clearRect(0, 0, 1000, 1000);
         int i = 2;
         for (CelestialObject o : game.objects) {    
-            Image image = new Image(o.getImage());
-            gc.drawImage( image, (int) o.getX() - o.getSize() / 2, (int) o.getY() - o.getSize() / 2, o.getSize(), o.getSize());
+            if (o.getType().equals("star")) {
+                gc.drawImage( star, (int) o.getX() - o.getSize() / 2, (int) o.getY() - o.getSize() / 2, o.getSize(), o.getSize());
+            } else {
+                gc.drawImage( planet, (int) o.getX() - o.getSize() / 2, (int) o.getY() - o.getSize() / 2, o.getSize(), o.getSize());
+            }      
             //Print info of object TODO Add these to a separate ui
             gc.fillText("Objects:", 0, 600);
             //Name

@@ -8,9 +8,6 @@ package gravitysimulator.domain;
 import gravitysimulator.ui.GameUI;
 import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 
 /**
  *
@@ -24,6 +21,7 @@ public final class Game {
     private final GameUI ui;
     private int i = 0;
     private final Game game;
+    private double gameSpeed = 0.01;
     
     public Game(GameUI ui) {
         this.ui = ui;
@@ -45,15 +43,20 @@ public final class Game {
             @Override
             public void handle(long currentNanoTime) {
                 //Calculate gravity for all objects
-                objects.forEach((o1) -> {   
-                    //applyGravity(o1);
+                i++;
+                objects.forEach((o1) -> {
+                    if (i % o1.priority == 0) {
+                        applyGravity(o1);
+                    }    
                     //Move the object
                     o1.setPosition(o1.getX() + o1.getXSpeed(), o1.getY() + o1.getYSpeed());
                 });
                 ui.drawGame(game);
+                 
             }               
         };
         update.start();
+        ui.drawGame(game);
     }
     
     /**
@@ -61,26 +64,24 @@ public final class Game {
     * @param o1 the object to apply gravity to.
     */
     private void applyGravity(CelestialObject o1) {
-        i++;
-        if (i % o1.priority == 0) {
             objects.forEach((o2) -> {  
-                if (!o1.equals(o2)) {                           
-                    //Newton's gravity law, allmost. Everything is somewhat smaller
-                    //Gravitational constant
-                    double G = 6.674 * Math.pow(10, -11);
-                    //mass in Kg
-                    long mass = (long) (o2.getMass() * Math.pow(10, 15));
-                    //distance in m
-                    double distance = Math.abs(Math.pow(Math.pow(o2.getX() - o1.getX(), 2) + (Math.pow(o2.getY() - o1.getY(), 2)), 0.5)) * Math.pow(10, 6);
-                    //Gravity is multiplied by priority
-                    double pullForce = G * (mass / distance) * o1.priority;
-                    //Angle of the gravity force
-                    double angle = Math.atan2(o2.getY() - o1.getY(), o2.getX() - o1.getX());
-                    //Apply gravity in an angle
-                    o1.setSpeed(o1.getXSpeed() + pullForce * Math.cos(angle), o1.getYSpeed() + pullForce * Math.sin(angle));
-                }
-            });
-        } 
+            if (!o1.equals(o2)) {                           
+                //Newton's gravity law, allmost. Everything is somewhat smaller
+                //Gravitational constant
+                double G = 6.674 * Math.pow(10, -11);
+                //mass in Kg
+                long mass = (long) (o2.getMass() * Math.pow(10, 15));
+                //distance in m
+                double distance = Math.abs(Math.pow(Math.pow(o2.getX() - o1.getX(), 2) + (Math.pow(o2.getY() - o1.getY(), 2)), 0.5)) * Math.pow(10, 6);
+                //Gravity is multiplied by priority and gameSpeed
+                double pullForce = G * (mass / distance) * o1.priority * gameSpeed;
+                //Angle of the gravity force
+                double angle = Math.atan2(o2.getY() - o1.getY(), o2.getX() - o1.getX());
+                //Apply gravity in an angle
+                o1.setSpeed(o1.getXSpeed() + pullForce * Math.cos(angle), o1.getYSpeed() + pullForce * Math.sin(angle));
+            }
+        });
+        
     }
     
     /**
@@ -88,6 +89,14 @@ public final class Game {
     */
     public void stop() {      
         update.stop();
+    }
+    
+    public double getGameSpeed() {
+        return this.gameSpeed;
+    }
+    
+    public void changeGameSpeed(double speed) {
+        this.gameSpeed = speed;
     }
     
     /**

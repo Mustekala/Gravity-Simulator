@@ -22,7 +22,7 @@ public class CelestialObject {
     
     private final double mass;
     private final double size;
-    String image;
+    Integer imageType;  
     
     //Todo
     public int priority;
@@ -85,8 +85,8 @@ public class CelestialObject {
         return priority;
     };
     
-    public String getImage() {
-        return image;
+    public Integer getImageType() {
+        return imageType;
     };
     
     public void setPosition(double x, double y) {
