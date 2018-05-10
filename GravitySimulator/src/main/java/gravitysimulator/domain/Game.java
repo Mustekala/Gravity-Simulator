@@ -16,19 +16,26 @@ import javafx.animation.AnimationTimer;
  */
 public final class Game {
     
-    public ArrayList<CelestialObject> objects;
+    private ArrayList<CelestialObject> objects;
+    //For removing objects after the loop has finished
+    private ArrayList<CelestialObject> objectsToBeRemoved;
+    
     private AnimationTimer update;
     private final GameUI ui;
     private int i = 0;
+    //Give objects unique ids
+    private int id = 0;
     private final Game game;
     private double gameSpeed = 0.01;
+    private boolean isPaused;
     
     public Game(GameUI ui) {
         this.ui = ui;
         objects = new ArrayList<>();
+        objectsToBeRemoved = new ArrayList<>();
         game = this;
     }
-    
+     
     private void load() {
         
     }
@@ -38,7 +45,7 @@ public final class Game {
     *  Updates all the objects in the game.
     */
     public void startUpdate() {
-
+        isPaused = false;
         update = new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
@@ -52,11 +59,13 @@ public final class Game {
                     o1.setPosition(o1.getX() + o1.getXSpeed(), o1.getY() + o1.getYSpeed());
                 });
                 ui.drawGame(game);
-                 
+                objects.removeAll(objectsToBeRemoved);
             }               
         };
         update.start();
-        ui.drawGame(game);
+        if (ui != null) {
+            ui.drawGame(game);
+        }       
     }
     
     /**
@@ -64,7 +73,8 @@ public final class Game {
     * @param o1 the object to apply gravity to.
     */
     private void applyGravity(CelestialObject o1) {
-            objects.forEach((o2) -> {  
+        //If collisions happen, add objects to list       
+        objects.forEach((o2) -> {  
             if (!o1.equals(o2)) {                           
                 //Newton's gravity law, allmost. Everything is somewhat smaller
                 //Gravitational constant
@@ -79,16 +89,34 @@ public final class Game {
                 double angle = Math.atan2(o2.getY() - o1.getY(), o2.getX() - o1.getX());
                 //Apply gravity in an angle
                 o1.setSpeed(o1.getXSpeed() + pullForce * Math.cos(angle), o1.getYSpeed() + pullForce * Math.sin(angle));
+                //Check collision
+                objectsToBeRemoved.add(handleCollision(o1, o2, distance));
             }
-        });
-        
+        });       
+    }
+    
+    public CelestialObject handleCollision(CelestialObject o1, CelestialObject o2, double distance) {
+        if (distance < o1.getSize() * Math.pow(10, 6)) {
+            System.out.println("COLLISION");
+            if (o1.getMass() >= o2.getMass()) {
+                o1.setMass(o1.getMass() + o2.getMass());
+                o1.setSize(o1.getSize() + o2.getSize() / 2);
+                return o2;
+            } 
+        }
+        return null;
     }
     
     /**
     * Stops updating the game
     */
-    public void stop() {      
+    public void stop() { 
+        isPaused = true;
         update.stop();
+    }
+    
+    public boolean isPaused() {
+        return this.isPaused;
     }
     
     public double getGameSpeed() {
@@ -112,27 +140,24 @@ public final class Game {
      * @param priority the update priority of the object (smaller = higher)
      * @return if the object was added
     */
-    public Boolean addCelestialObject(String type, String name, int x, int y, double xSpeed, double ySpeed, double mass, double size, int priority) {
-        String fixedName = name;
-        
+    public CelestialObject createCelestialObject(String type, String name, int x, int y, double xSpeed, double ySpeed, double mass, double size, int priority) {
+        String fixedName = name;       
         //Todo actual amount
         if (findCelestialObject(name) != null) {            
             fixedName = fixedName + objects.size();
         }
-        
-        int id = objects.size() - 1;
-        
-        switch (type) {
-            case "star":
-                objects.add(new Star(id, fixedName, x, y, xSpeed, ySpeed, mass, size, priority));
-                break;
-            case "planet":
-                objects.add(new Planet(id, fixedName, x, y, xSpeed, ySpeed, mass, size, priority));
-                break;
-            default:
-                return false;
-        }
-        return true;
+        CelestialObject object;        
+        if (type.equals("star")) {     
+            object = new Star(id, fixedName, x, y, xSpeed, ySpeed, mass, size, priority);
+        } else {           
+            object = new Planet(id, fixedName, x, y, xSpeed, ySpeed, mass, size, priority);
+        }             
+        id++;       
+        return object;
+    }
+    
+    public void addCelestialObject(CelestialObject o) {
+        objects.add(o);
     }
     
     /**
@@ -142,6 +167,14 @@ public final class Game {
     */
     public Boolean removeCelestialObject(String name) {
         return objects.remove(findCelestialObject(name));
+    }
+    /**
+    * Remove object from the game
+     * @param object object to be removed
+     * @return if the object was removed
+    */
+    public Boolean removeCelestialObject(CelestialObject object) {
+        return objects.remove(object);
     }
     
     /**
@@ -157,4 +190,17 @@ public final class Game {
         }
         return null;
     }
+    
+    public GameUI getUi() {
+        return this.ui;
+    }
+    
+    public void setObjects(ArrayList<CelestialObject> objects) {
+        this.objects = objects;
+    }
+    
+    public ArrayList<CelestialObject> getObjects() {
+        return this.objects;
+    }
+
 }

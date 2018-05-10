@@ -24,4 +24,8 @@ Työaikakirjanpito
 
 2.5 Jatkettu tallennusominaisuutta, tehty viikon 6 vaatimuksia, 8h
 
-Käytetyt tunnit yhteensä: 41,5h
+9.5 Korjattu pelin paha lagaaminen, 3h
+
+10.5 Lisätty kamera, muutettu tapa jolla objekteja lisätään toimimaan hiirellä, 6h
+
+Käytetyt tunnit yhteensä: 50,5h

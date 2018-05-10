@@ -14,9 +14,11 @@ import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 /**
  *
@@ -65,9 +67,7 @@ public class GravitysimulatorUI extends Application {
                  
         layout.setTop(top);
 	layout.setCenter(menu);
-        
-        Scene view = new Scene(layout, 1200, 800);
-        
+                  
         BackgroundImage space = new BackgroundImage(new Image("/images/space.jpg",1000,1000,false,true),
             BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
               BackgroundSize.DEFAULT);
@@ -76,10 +76,16 @@ public class GravitysimulatorUI extends Application {
         //Buttons
         newGameButton.setOnAction((event) -> {
             try {
-                gameUI = new GameUI();
-                game = new Game(gameUI);          
+                VBox menus = new VBox();
+                CelestialObjectUI objectUI = new CelestialObjectUI();
+                gameUI = new GameUI(objectUI);
+                game = new Game(gameUI);  
+                //Load game for ui use
+                gameUI.loadGame(game);
                 GameMenu gameMenu = new GameMenu(game);
-                layout.setLeft(gameMenu.getScene());                       
+                menus.getChildren().add(gameMenu.getScene());
+                menus.getChildren().add(objectUI.getScene());
+                layout.setLeft(menus);                       
                 layout.setCenter(gameUI.getScene());          
                 game.startUpdate();
             } catch (Exception ex) {
@@ -89,11 +95,18 @@ public class GravitysimulatorUI extends Application {
         
         loadSaveButton.setOnAction((event) -> {
             try {
-                gameUI = new GameUI();
+                VBox menus = new VBox();
+                CelestialObjectUI objectUI = new CelestialObjectUI();
+                gameUI = new GameUI(objectUI);
                 game = new Game(gameUI);
-                GameMenu gameMenu = new GameMenu(game);
-                game.objects = (ArrayList<CelestialObject>) load.loadGame();
-                layout.setLeft(gameMenu.getScene());                       
+                //Load game for ui use
+                gameUI.loadGame(game);
+                GameMenu gameMenu = new GameMenu(game);                                
+                ArrayList<CelestialObject> objects = (ArrayList<CelestialObject>) load.loadGame();
+                game.setObjects(objects);
+                menus.getChildren().add(gameMenu.getScene());
+                menus.getChildren().add(objectUI.getScene());
+                layout.setLeft(menus); 
                 layout.setCenter(gameUI.getScene());
                 game.startUpdate();
             } catch (Exception ex) {
@@ -101,14 +114,18 @@ public class GravitysimulatorUI extends Application {
             }
         });
         
-        creditsButton.setOnAction((event) -> layout.setCenter(credits.getView(layout)));
+        creditsButton.setOnAction((event) -> layout.setCenter(credits.getView()));
         
         returnButton.setOnAction((event) -> {
-            game.stop();
+            if (game != null ){
+                game.stop();
+            }          
             layout.setLeft(null);
             layout.setCenter(menu);
         });
-               
+        
+        Scene view = new Scene(layout, 1200, 800);
+              
 	window.setScene(view);
 	window.show();
     }

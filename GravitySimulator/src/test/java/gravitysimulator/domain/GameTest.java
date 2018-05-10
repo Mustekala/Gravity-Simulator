@@ -9,17 +9,19 @@ import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
+import gravitysimulator.domain.CelestialObject;
 
 /**
  *
  * @author eero
  */
+
 public class GameTest {
     Game game;
     
     @Before
     public void setUp() {
-        //game = new Game();
+        game = new Game(null);
     }
     
     @After
@@ -28,32 +30,33 @@ public class GameTest {
 
     @Test
     public void canAddStars() {
-        game.addCelestialObject("star", "sun", 0, 0, 0, 0, 0, 0, 1);
-        assertEquals(1, game.objects.size());
+        CelestialObject o = game.createCelestialObject("star", "sun", 0, 0, 0, 0, 0, 0, 1);
+        game.addCelestialObject(o);
+        assertEquals(1, game.getObjects().size());
     }
     
     @Test
     public void canAddPlanets() {
-        game.addCelestialObject("planet", "mars", 0, 0, 0, 0, 0, 0, 1);
-        assertEquals(1, game.objects.size());
+        game.addCelestialObject(game.createCelestialObject("planet", "mars", 0, 0, 0, 0, 0, 0, 1));
+        assertEquals(1, game.getObjects().size());
     }
     
     @Test
     public void cantAddNonStarsOrNonPlanets() {
-        game.addCelestialObject("teapot", "teatime", 0, 0, 0, 0, 0, 0, 1);
-        assertEquals(0, game.objects.size());
+        game.addCelestialObject(game.createCelestialObject("teapot", "teatime", 0, 0, 0, 0, 0, 0, 1));
+        assertEquals(0, game.getObjects().size());
     }
     
     @Test
     public void canRemoveObjects() {
-        game.addCelestialObject("star", "sun", 0, 0, 0, 0, 0, 0, 1);
+        game.addCelestialObject(game.createCelestialObject("star", "sun", 0, 0, 0, 0, 0, 0, 1));
         game.removeCelestialObject("sun");
-        assertEquals(0, game.objects.size());
+        assertEquals(0, game.getObjects().size());
     }
     
     @Test
     public void canFindObjects() {
-        game.addCelestialObject("star", "sun", 0, 0, 0, 0, 0, 0, 1);       
+        game.addCelestialObject(game.createCelestialObject("star", "sun", 0, 0, 0, 0, 0, 0, 1));       
         assertEquals("sun", game.findCelestialObject("sun").getName());
     }
     

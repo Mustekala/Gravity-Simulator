@@ -11,12 +11,9 @@ package gravitysimulator.domain;
  * Star is the subclass for all stars in game
  */
 public class Star extends CelestialObject {
-    
-    Integer imageType = 1;
-    
+
     public Star(int id, String name, int x, int y, double xSpeed, double ySpeed, double mass, double size, int priority) {
         super(id, name, x, y, xSpeed, ySpeed, mass, size, priority);    
-        super.imageType = imageType;
     }
     
     @Override

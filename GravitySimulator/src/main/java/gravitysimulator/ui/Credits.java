@@ -22,8 +22,9 @@ public class Credits {
     /**
     *
     * Creates the credit layout
+     * @return the credits layout 
     */  
-    public Parent getView(Parent previous) {
+    public Parent getView() {
 	BorderPane layout = new BorderPane();
         
 	VBox buttons = new VBox();

@@ -5,6 +5,8 @@
  */
 package gravitysimulator.domain;
 
+import javafx.scene.shape.Circle;
+
 /**
  *
  * @author eero
@@ -20,11 +22,11 @@ public class CelestialObject {
     private double xSpeed;
     private double ySpeed;
     
-    private final double mass;
-    private final double size;
-    Integer imageType;  
+    private double mass;
+    private double size; 
     
-    //Todo
+    Circle object;
+       
     public int priority;
     
     CelestialObject(Integer id, String name, int x, int y, double xSpeed, double ySpeed, double mass, double size, int priority) {
@@ -38,6 +40,7 @@ public class CelestialObject {
         //mass * 10x24, in Yottagrams
         this.mass = mass;
         this.size = size;      
+        object = new Circle(x, y, size);
         this.priority = priority;
     }
     
@@ -76,22 +79,30 @@ public class CelestialObject {
     public double getMass() {
         return mass;
     };
+    public void setMass(double mass) {
+        this.mass = mass;
+    };
     
     public double getSize() {
         return size;
+    };
+    public void setSize(double size) {
+        this.size = size;
     };
     
     public int getPriority() {
         return priority;
     };
     
-    public Integer getImageType() {
-        return imageType;
-    };
+    public Circle getTarget() {
+        return object;
+    }
     
     public void setPosition(double x, double y) {
         this.x = x;
         this.y = y;
+        this.object.setCenterX(x);
+        this.object.setCenterY(y);
     };
     
     public void setSpeed(double xSpeed, double ySpeed) {

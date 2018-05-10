@@ -5,8 +5,7 @@
  */
 package gravitysimulator.ui;
 
-import gravitysimulator.dao.CelestialObjectDao;
-import gravitysimulator.database.Database;
+import gravitysimulator.domain.CelestialObject;
 import gravitysimulator.domain.Game;
 import gravitysimulator.domain.Save;
 import java.sql.SQLException;
@@ -29,10 +28,14 @@ public class GameMenu {
     
     Game game;
     Save save;
+    GameUI gameUI;
+    //Show info on objects
+
     
     public GameMenu(Game game) throws Exception {
         this.game = game;  
         this.save = new Save();
+        this.gameUI = game.getUi();
     }
     
     public SubScene getScene() {      
@@ -46,10 +49,6 @@ public class GameMenu {
         Label menuText = new Label("Add objects");
         Label nameText = new Label("Name:");
         TextField name = new TextField();
-        Label xText = new Label("x:");
-        TextField x = new TextField();
-        Label yText = new Label("y:");
-        TextField y = new TextField();
         Label xSpeedText = new Label("xSpeed");
         TextField xSpeed = new TextField();
         Label ySpeedText = new Label("ySpeed");
@@ -66,12 +65,6 @@ public class GameMenu {
         
         addObjectsMenu.getChildren().add(nameText);
         addObjectsMenu.getChildren().add(name);
-        
-        addObjectsMenu.getChildren().add(xText);
-        addObjectsMenu.getChildren().add(x);
-        
-        addObjectsMenu.getChildren().add(yText);
-        addObjectsMenu.getChildren().add(y);
         
         addObjectsMenu.getChildren().add(xSpeedText);
         addObjectsMenu.getChildren().add(xSpeed);
@@ -91,38 +84,54 @@ public class GameMenu {
         addObjectsMenu.getChildren().add(addStarButton);
         addObjectsMenu.getChildren().add(addPlanetButton);
         
+        //Info menu
+        VBox infoMenu = new VBox();
+        infoMenu.setSpacing(5);
+        infoMenu.setPadding(new Insets(5, 5, 5, 5));
+                      
         //Saving menu
-        VBox saveMenu = new VBox();
-        saveMenu.setSpacing(5);
-        saveMenu.setPadding(new Insets(5, 5, 5, 5));
+        VBox bottonMenu = new VBox();
+        bottonMenu.setSpacing(5);
+        bottonMenu.setPadding(new Insets(5, 5, 5, 5));
         
+        Button pauseButton = new Button("Pause game");
         Button saveButton = new Button("Save current game");
-        saveMenu.getChildren().add(saveButton);
+        bottonMenu.getChildren().addAll(pauseButton, saveButton);
         
         //Button's events
         addStarButton.setOnAction((event) -> {
-            game.addCelestialObject("star", name.getText(), Integer.parseInt(x.getText()), Integer.parseInt(y.getText()), Double.parseDouble(xSpeed.getText()),
-                    Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()), Integer.parseInt(priority.getText()));
+            //Add star to the center of gameUI
+            gameUI.addCelestialObject(game.createCelestialObject("star", name.getText(), 0, 0, Double.parseDouble(xSpeed.getText()),
+                    Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()), Integer.parseInt(priority.getText())));
         });
         
         addPlanetButton.setOnAction((event) -> {
-            game.addCelestialObject("planet", name.getText(), Integer.parseInt(x.getText()), Integer.parseInt(y.getText()), Double.parseDouble(xSpeed.getText()),
-                    Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()), Integer.parseInt(priority.getText()));
+            gameUI.addCelestialObject(game.createCelestialObject("planet", name.getText(), 0, 0, Double.parseDouble(xSpeed.getText()),
+                    Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()), Integer.parseInt(priority.getText())));
         });
         
+        //Pause the game
+        pauseButton.setOnAction((event) -> {
+            if (game.isPaused()) {
+                game.startUpdate();
+            } else {
+                game.stop();
+            }         
+        });
         //Save the game using DAO
         saveButton.setOnAction((event) -> {
             try {
-                save.saveGame(game.objects);
+                save.saveGame(game.getObjects());
             } catch (SQLException ex) {
                 Logger.getLogger(GameMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-
-        menu.setLeft(addObjectsMenu);
-        menu.setBottom(saveMenu);
         
-        SubScene menuScene = new SubScene(menu, 200, 770);
+        menu.setLeft(addObjectsMenu);
+        menu.setCenter(infoMenu);
+        menu.setBottom(bottonMenu);
+                      
+        SubScene menuScene = new SubScene(menu, 200, 500);
    
         return menuScene;
     }
