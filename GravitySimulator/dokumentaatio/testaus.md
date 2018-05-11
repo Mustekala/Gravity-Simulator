@@ -6,7 +6,7 @@ Ohjelmaa on testattu sekä automatisoiduin yksikkö- ja integraatiotestein JUnit
 
 ### Sovelluslogiikka
 
-Sovelluslogiikkaa on testattu niiltä osin kuin se onnistui ilman ongelmia. Peliloopin testaaminen oli hyvin vaikeaa, joten se on jäänyt vähemmälle.
+Sovelluslogiikkaa on testattu niiltä osin kuin se onnistui ilman ongelmia. Peliloopin(AnimationTimer) testaaminen oli hyvin vaikeaa, joten se on jäänyt pois.
 
 <img src="https://raw.githubusercontent.com/Mustekala/otm-harjoitustyo/master/GravitySimulator/dokumentaatio/kuvat/testaus_domain.png" width="640">
 
