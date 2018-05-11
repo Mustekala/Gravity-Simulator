@@ -1,5 +1,8 @@
 ##Työaikakirjanpito
 
+| Päivä | Mitä tehty | Kulunut aika |
+| :----:|:-----| :-----|
+
 | 26.3 | Aloitettu vaatimusmäärittely. | 30 min |
 
 | 27.3 | Luotu pohja projektille. Vaatimusmäärittely valmis. | 2h |
