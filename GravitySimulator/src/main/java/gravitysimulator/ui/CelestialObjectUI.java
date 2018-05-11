@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
  * Shows info about currently selected celestialObject
  */
 public class CelestialObjectUI {
-    //TODO private
+
     public Label name;
     public Label type;
     public Label x;
@@ -43,10 +43,8 @@ public class CelestialObjectUI {
         
         texts.getChildren().add(name);
         texts.getChildren().add(type);
-        
         texts.getChildren().add(x);
-        texts.getChildren().add(y);
-        
+        texts.getChildren().add(y);       
         texts.getChildren().add(mass);
         texts.getChildren().add(size);
               

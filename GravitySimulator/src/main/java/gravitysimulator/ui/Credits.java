@@ -27,7 +27,7 @@ public class Credits {
     
     /**
     *
-    * Creates the credit layout
+    * Creates the credits layout
      * @return the credits layout 
     */  
     public Parent getView() {
@@ -48,6 +48,9 @@ public class Credits {
         return layout;
     }
     
+    /**
+     * Draws the credits
+     */
     public void drawCredits() {
         gc.setFill(Color.WHITE);
         gc.setLineWidth(5);        

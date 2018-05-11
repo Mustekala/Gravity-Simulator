@@ -9,6 +9,10 @@ import gravitysimulator.domain.CelestialObject;
 import gravitysimulator.domain.Planet;
 import gravitysimulator.domain.Star;
 
+/**
+ * Dao for saving the celestial objects to database 
+ * @author eero
+ */
 public class CelestialObjectDao implements Dao<CelestialObject, Integer> {
 
     private final Database database;
@@ -17,6 +21,11 @@ public class CelestialObjectDao implements Dao<CelestialObject, Integer> {
         this.database = database;
     }
 
+    /**
+     * Finds all saved CelestialObjects
+     * @return list of all saved CelestialObjects
+     * @throws SQLException
+     */
     @Override
     public List<CelestialObject> findAll() throws SQLException {
         List<CelestialObject> objects = new ArrayList<>();
@@ -36,6 +45,11 @@ public class CelestialObjectDao implements Dao<CelestialObject, Integer> {
         return objects;
     }
 
+    /**
+     * Saves CelestialObjects
+     * @param object the CelestialObject to be saved
+     * @throws SQLException
+     */
     @Override
     public void saveOrUpdate(CelestialObject object) throws SQLException {
 
@@ -57,13 +71,20 @@ public class CelestialObjectDao implements Dao<CelestialObject, Integer> {
 
     }
 
-    
-    public void clearTable() throws SQLException {
+    /**
+     * Drops the celestialObject table
+     * @throws SQLException
+     */
+    public void dropTable() throws SQLException {
         try (Connection conn = database.getConnection()) {
             conn.prepareStatement("DROP TABLE IF EXISTS celestialObject").executeUpdate();
         }
     }
     
+    /**
+     * Creates an empty table
+     * @throws SQLException
+     */
     public void createTable() throws SQLException {
         try (Connection conn = database.getConnection()) {
             conn.prepareStatement("CREATE TABLE celestialObject (\n" +

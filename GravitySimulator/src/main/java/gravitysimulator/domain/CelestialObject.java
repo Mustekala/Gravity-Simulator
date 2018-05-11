@@ -65,22 +65,22 @@ public class CelestialObject {
     
     public double getX() {
         return x;
-    };
-    
+    };    
     public double getY() {
         return y;
     };
     
     public double getXSpeed() {
         return xSpeed;
-    };
-    public void setXSpeed(double xSpeed){
+    };  
+    public void setXSpeed(double xSpeed) {
         this.xSpeed = xSpeed;
     }
+    
     public double getYSpeed() {
         return ySpeed;
-    };
-    public void setYSpeed(double ySpeed){
+    };  
+    public void setYSpeed(double ySpeed) {
         this.ySpeed = ySpeed;
     }
     

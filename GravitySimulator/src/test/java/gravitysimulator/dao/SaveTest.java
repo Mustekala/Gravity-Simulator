@@ -5,6 +5,7 @@
  */
 package gravitysimulator.dao;
 
+import gravitysimulator.database.Database;
 import gravitysimulator.domain.CelestialObject;
 import gravitysimulator.domain.Game;
 import gravitysimulator.domain.Load;
@@ -17,19 +18,21 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- *
+ * Tests saving functionality
  * @author eero
  */
 public class SaveTest {
     Game game;
     Save save;
     Load load;
-    
+    Database database;
+  
     @Before
     public void setUp() throws ClassNotFoundException {
+        this.database = new Database("jdbc:sqlite:gravitysimulatorTest.db");
         game = new Game(null);
-        save = new Save();
-        load = new Load();
+        save = new Save(database);
+        load = new Load(database);
     }
     
     @After

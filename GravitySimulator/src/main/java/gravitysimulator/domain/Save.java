@@ -32,12 +32,22 @@ public class Save {
     }
     
     /**
+     * Class for saving the system into a SQLite database
+     * @param db the database to save to
+     * @throws ClassNotFoundException
+     */
+    public Save(Database db) throws ClassNotFoundException {
+        database = db;     
+        celestialObjects = new CelestialObjectDao(database); 
+    }
+    
+    /**
     * saveGame saves all the objects from the game into database.
     * @param objects all the objects from game
      * @throws java.sql.SQLException
     */
     public void saveGame(ArrayList<CelestialObject> objects) throws SQLException {
-        celestialObjects.clearTable();
+        celestialObjects.dropTable();
         celestialObjects.createTable();
         objects.forEach((object) -> {
             try {               
@@ -49,6 +59,7 @@ public class Save {
     }
     
     public void clearSave() throws SQLException {
-        celestialObjects.clearTable();
+        celestialObjects.dropTable();
+        celestialObjects.createTable();
     }
 }

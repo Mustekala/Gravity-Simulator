@@ -25,6 +25,11 @@ public class Load {
         celestialObjects = new CelestialObjectDao(database); 
     }
     
+    public Load(Database db) throws ClassNotFoundException {
+        database = db;      
+        celestialObjects = new CelestialObjectDao(database); 
+    }
+    
     /**
     * loadGame loads all the objects from the database table celestialObject.
     * @return objects all the objects from the database table celestialObject

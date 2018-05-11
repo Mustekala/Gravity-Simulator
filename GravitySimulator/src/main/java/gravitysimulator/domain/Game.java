@@ -26,7 +26,7 @@ public final class Game {
     //Give objects unique ids
     private int id = 0;
     private final Game game;
-    private double gameSpeed = 0.01;
+    private double gameSpeed = 0.005;
     private boolean isPaused;
     
     public Game(GameUI ui) {
@@ -58,33 +58,32 @@ public final class Game {
                     //Move the object
                     o1.setPosition(o1.getX() + o1.getXSpeed(), o1.getY() + o1.getYSpeed());
                 });
-                ui.drawGame(game);
-                objects.removeAll(objectsToBeRemoved);
+                if (ui != null) {
+                    ui.drawGame(game);
+                }    
+                removeObjectsToBeRemoved();
             }               
         };
-        update.start();
-        if (ui != null) {
-            ui.drawGame(game);
-        }       
+        update.start();      
     }
     
     /**
     * Applies gravity to object
     * @param o1 the object to apply gravity to.
     */
-    private void applyGravity(CelestialObject o1) {
+    public void applyGravity(CelestialObject o1) {
         //If collisions happen, add objects to list       
         objects.forEach((o2) -> {  
             if (!o1.equals(o2)) {                           
                 //Newton's gravity law, allmost. Everything is somewhat smaller
                 //Gravitational constant
-                double G = 6.674 * Math.pow(10, -11);
+                double g = 6.674 * Math.pow(10, -11);
                 //mass in Kg
                 long mass = (long) (o2.getMass() * Math.pow(10, 15));
                 //distance in m
                 double distance = Math.abs(Math.pow(Math.pow(o2.getX() - o1.getX(), 2) + (Math.pow(o2.getY() - o1.getY(), 2)), 0.5)) * Math.pow(10, 6);
                 //Gravity is multiplied by priority and gameSpeed
-                double pullForce = G * (mass / distance) * o1.priority * gameSpeed;
+                double pullForce = g * (mass / distance) * o1.priority * gameSpeed;
                 //Angle of the gravity force
                 double angle = Math.atan2(o2.getY() - o1.getY(), o2.getX() - o1.getX());
                 //Apply gravity in an angle
@@ -97,7 +96,6 @@ public final class Game {
     
     public CelestialObject handleCollision(CelestialObject o1, CelestialObject o2, double distance) {
         if (distance < o1.getSize() * Math.pow(10, 6)) {
-            System.out.println("COLLISION");
             if (o1.getMass() >= o2.getMass()) {
                 o1.setMass(o1.getMass() + o2.getMass());
                 o1.setSize(o1.getSize() + o2.getSize() / 2);
@@ -128,7 +126,7 @@ public final class Game {
     }
     
     /**
-    * Add object to the game
+    * Create object for the game
      * @param type type of the object
      * @param name name of the object
      * @param x x coordinate of the object
@@ -138,11 +136,11 @@ public final class Game {
      * @param mass the mass of the object
      * @param size the size of the object
      * @param priority the update priority of the object (smaller = higher)
-     * @return if the object was added
+     * @return the created object
     */
     public CelestialObject createCelestialObject(String type, String name, int x, int y, double xSpeed, double ySpeed, double mass, double size, int priority) {
         String fixedName = name;       
-        //Todo actual amount
+
         if (findCelestialObject(name) != null) {            
             fixedName = fixedName + objects.size();
         }
@@ -156,6 +154,10 @@ public final class Game {
         return object;
     }
     
+    /**
+     * Add object to the game
+     * @param o the object to add
+     */
     public void addCelestialObject(CelestialObject o) {
         objects.add(o);
     }
@@ -177,6 +179,10 @@ public final class Game {
         return objects.remove(object);
     }
     
+    public void removeObjectsToBeRemoved() {
+        objects.removeAll(objectsToBeRemoved);
+    }
+    
     /**
     * Find object in the game
      * @param name name of the object
@@ -190,11 +196,11 @@ public final class Game {
         }
         return null;
     }
-    
+
     public GameUI getUi() {
         return this.ui;
     }
-    
+ 
     public void setObjects(ArrayList<CelestialObject> objects) {
         this.objects = objects;
     }

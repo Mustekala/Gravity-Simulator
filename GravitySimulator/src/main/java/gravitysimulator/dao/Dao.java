@@ -12,6 +12,10 @@ package gravitysimulator.dao;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * Basic dao interface
+ * @author eero
+ */
 public interface Dao<T, K> {
 
     List<T> findAll() throws SQLException;

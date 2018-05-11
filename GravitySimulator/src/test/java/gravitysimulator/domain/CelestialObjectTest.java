@@ -12,7 +12,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Tests functionality of CelestialObjects (stars and planets)
  * @author eero
  */
 public class CelestialObjectTest {
