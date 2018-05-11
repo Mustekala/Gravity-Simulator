@@ -26,7 +26,7 @@ Käyttöliittymäkerrosta lukuunottamatta sovelluksen testauksen rivikattavuus o
 
 Sovelluksen järjestelmätestaus on suoritettu manuaalisesti.
 
-### Asennus ja kanfigurointi
+### Asennus
 
 Sovellus on haettu ja sitä on testattu [käyttöohjeen](https://raw.githubusercontent.com/Mustekala/otm-harjoitustyo/master/GravitySimulator/dokumentaatio/kayttoohje.md) kuvaamalla tavalla Linux-käyttöjärjestelmällä.
 
