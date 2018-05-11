@@ -20,5 +20,5 @@
 | 11.5 | Lisätty ruutu, jossa tietoa valitusta objektista. Lisätty seuraava kamera. Lisätty törmäys. Lisätty toimiva credits-ruutu. | 4 h |
 |11.5 | Päivitetty dokumentaatiota. Lisätty testejä. | 3,5 h |
 
-Käytetyt tunnit yhteensä: 60h
+Käytetyt tunnit yhteensä: 60 h
 
