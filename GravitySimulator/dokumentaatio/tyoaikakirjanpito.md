@@ -28,6 +28,9 @@ Työaikakirjanpito
 
 10.5 Lisätty kamera. Muutettu tapa jolla objekteja lisätään toimimaan hiirellä. 6h
 
-10.5 Lisätty ruutu, jossa tietoa valitusta objektista. Lisätty seuraava kamera. Lisätty törmäys. Lisätty toimiva credits-ruutu. Lisätty testejä. 4h.
+11.5  Lisätty mahdollisuus valita kappale hiirellä. Lisätty ruutu, jossa näkyy tietoja valitusta kappaleesta, 2h
 
-Käytetyt tunnit yhteensä: 54,5h
+11.5 Lisätty ruutu, jossa tietoa valitusta objektista. Lisätty seuraava kamera. Lisätty törmäys. Lisätty toimiva credits-ruutu. Lisätty testejä. 4h.
+
+Käytetyt tunnit yhteensä: 56,5h
+
