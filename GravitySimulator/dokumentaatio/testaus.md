@@ -28,10 +28,10 @@ Sovelluksen järjestelmätestaus on suoritettu manuaalisesti.
 
 ### Asennus
 
-Sovellus on haettu ja sitä on testattu [käyttöohjeen](https://github.com/Mustekala/otm-harjoitustyo/master/GravitySimulator/dokumentaatio/kayttoohje.md) kuvaamalla tavalla Linux-käyttöjärjestelmällä.
+Sovellus on haettu ja sitä on testattu [käyttöohjeen](https://github.com/Mustekala/otm-harjoitustyo/blob/master/GravitySimulator/dokumentaatio/kayttoohje.md) kuvaamalla tavalla Linux-käyttöjärjestelmällä.
 
 ### Toiminnallisuudet
 
-Kaikki [määrittelydokumentin](https://github.com/Mustekala/otm-harjoitustyo/master/GravitySimulator/dokumentaatio/vaatimusmaarittely.md) ja käyttöohjeen listaamat toiminnallisuudet on käyty läpi.
+Kaikki [määrittelydokumentin](https://github.com/Mustekala/otm-harjoitustyo/blob/master/GravitySimulator/dokumentaatio/vaatimusmaarittely.md) ja käyttöohjeen listaamat toiminnallisuudet on käyty läpi.
 
 
