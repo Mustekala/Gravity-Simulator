@@ -110,13 +110,17 @@ public class GameMenu {
         //Button's events
         addStarButton.setOnAction((event) -> {
             //Add star to the center of gameUI
-            gameUI.addCelestialObject(game.createCelestialObject("star", name.getText(), 0, 0, Double.parseDouble(xSpeed.getText()),
+            if (!name.getText().isEmpty() && !xSpeed.getText().isEmpty() && !ySpeed.getText().isEmpty() && !mass.getText().isEmpty() && !size.getText().isEmpty() && !priority.getText().isEmpty()) {
+                gameUI.addCelestialObject(game.createCelestialObject("star", name.getText(), 0, 0, Double.parseDouble(xSpeed.getText()),
                     Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()), Integer.parseInt(priority.getText())));
+            }    
         });
         
         addPlanetButton.setOnAction((event) -> {
-            gameUI.addCelestialObject(game.createCelestialObject("planet", name.getText(), 0, 0, Double.parseDouble(xSpeed.getText()),
+            if (!name.getText().isEmpty() && !xSpeed.getText().isEmpty() && !ySpeed.getText().isEmpty() && !mass.getText().isEmpty() && !size.getText().isEmpty() && !priority.getText().isEmpty()) {
+                gameUI.addCelestialObject(game.createCelestialObject("planet", name.getText(), 0, 0, Double.parseDouble(xSpeed.getText()),
                     Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()), Integer.parseInt(priority.getText())));
+            }
         });
         
         modifyObjectButton.setOnAction((event) -> {
@@ -130,9 +134,6 @@ public class GameMenu {
                 }
                 if (!ySpeed.getText().isEmpty()) {
                     o.setYSpeed(Double.parseDouble(ySpeed.getText()));
-                }
-                if (!mass.getText().isEmpty()) {
-                    o.setMass(Double.parseDouble(mass.getText()));
                 }
                 if (!mass.getText().isEmpty()) {
                     o.setMass(Double.parseDouble(mass.getText()));

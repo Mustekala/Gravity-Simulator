@@ -34,8 +34,4 @@ Sovellus on haettu ja sitä on testattu [käyttöohjeen](https://raw.githubuserc
 
 Kaikki [määrittelydokumentin](https://raw.githubusercontent.com/Mustekala/otm-harjoitustyo/master/GravitySimulator/dokumentaatio/vaatimusmaarittely) ja käyttöohjeen listaamat toiminnallisuudet on käyty läpi.
 
-## Sovellukseen jääneet laatuongelmat
-
-Tyhjät kentät pelissä aiheuttavat virheilmoituksen, jos yrittää lisätä kappaleita.
-
 
