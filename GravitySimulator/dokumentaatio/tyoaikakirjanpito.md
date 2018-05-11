@@ -21,3 +21,4 @@
 | 11.5 | Päivitetty dokumentaatiota. Lisätty testejä. | 3,5 h |
 
 Käytetyt tunnit yhteensä: 60 h
+
