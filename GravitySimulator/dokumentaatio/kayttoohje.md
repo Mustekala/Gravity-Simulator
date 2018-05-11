@@ -7,7 +7,7 @@ Lataa tiedosto [GravitySimulator-1.0-SNAPSHOT.jar](https://github.com/Mustekala/
 Ohjelma käynnistetään komennolla 
 
 ```
-java -jar GravitySimulator-1.0.jar
+java -jar GravitySimulator-1.0-SNAPSHOT.jar
 ```
 
 ## Käyttöliittymä
