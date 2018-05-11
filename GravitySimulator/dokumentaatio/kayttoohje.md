@@ -12,10 +12,15 @@ java -jar GravitySimulator-1.0.jar
 
 ## Käyttöliittymä
 
+<img src="https://raw.githubusercontent.com/Mustekala/otm-harjoitustyo/master/GravitySimulator/dokumentaatio/kuvat/menu.jpg" width="640">
+
 New game aloittaa uuden pelin. Load save lataa peliin tallennetun järjestelmän. Tällä hetkellä tuki vain yhden järjestelmän tallentamiseen. 
 Load save-valinta ei toimi ennen kuin käyttäjä tallentaa järjestelmän.
 
+
 ### Peli
+
+<img src="https://raw.githubusercontent.com/Mustekala/otm-harjoitustyo/master/GravitySimulator/dokumentaatio/kuvat/game.jpg" width="640">
 
 Pelin vasemmalla puolella on kenttiä, joilla voi luoda uuden kappaleen. Kaikki kentät on täytettävä.
 
