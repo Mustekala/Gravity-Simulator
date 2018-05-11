@@ -32,12 +32,12 @@ public class GravitysimulatorUI extends Application {
     /**
     *
     * Creates the program layout
+     * @param window the windows to add the scene to
+     * @throws java.lang.Exception
     */  
     @Override
     public void start(Stage window) throws Exception {
 
-        Credits credits = new Credits();
-        
         //class for loading save TODO if time saves?
         Load load = new Load();
                    
@@ -51,10 +51,7 @@ public class GravitysimulatorUI extends Application {
 	
         Button loadSaveButton = new Button("Load save");
 	menu.getChildren().add(loadSaveButton);
-	
-        Button creditsButton = new Button("Credits");
-	menu.getChildren().add(creditsButton);
-        
+       
         menu.setAlignment(Pos.CENTER);
                  
 	HBox top = new HBox();
@@ -105,13 +102,11 @@ public class GravitysimulatorUI extends Application {
                 Logger.getLogger(GravitysimulatorUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        
-        creditsButton.setOnAction((event) -> layout.setCenter(credits.getView()));
-        
+
         returnButton.setOnAction((event) -> {
             if (game != null ){
                 game.stop();
-            }          
+            }    
             layout.setLeft(null);
             layout.setCenter(menu);
         });

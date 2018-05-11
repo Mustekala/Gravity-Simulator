@@ -101,10 +101,11 @@ public class GameMenu {
         VBox bottonMenu = new VBox();
         bottonMenu.setSpacing(5);
         bottonMenu.setPadding(new Insets(5, 5, 5, 5));
-        
+        Label saveText = new Label("");
         Button pauseButton = new Button("Pause game");
         Button saveButton = new Button("Save current game");
-        bottonMenu.getChildren().addAll(pauseButton, saveButton);
+        
+        bottonMenu.getChildren().addAll(pauseButton, saveText, saveButton);
         
         //Button's events
         addStarButton.setOnAction((event) -> {
@@ -158,6 +159,7 @@ public class GameMenu {
         saveButton.setOnAction((event) -> {
             try {
                 save.saveGame(game.getObjects());
+                saveText.textProperty().setValue("Game saved");
             } catch (SQLException ex) {
                 Logger.getLogger(GameMenu.class.getName()).log(Level.SEVERE, null, ex);
             }

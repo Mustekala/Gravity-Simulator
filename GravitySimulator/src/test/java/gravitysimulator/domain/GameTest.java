@@ -80,15 +80,15 @@ public class GameTest {
         assertEquals(true, (o1.getXSpeed() != 0 && o1.getYSpeed() != 0) && (o2.getXSpeed() != 0 && o2.getYSpeed() != 0));
     }
     
-    //Smaller object should be removed
+    //Smaller object should be removed, and size should increase by otherObjectSize/4, in this case by 25
     @Test
     public void collisionWorks() {
         CelestialObject o1 = game.createCelestialObject("star", "sun", 0, 0, 0, 0, 1000, 100, 1);
         game.addCelestialObject(o1);
-        CelestialObject o2 = game.createCelestialObject("star", "otherSun", 10, 10, 0, 0, 1000, 100, 1);
+        CelestialObject o2 = game.createCelestialObject("star", "otherSun", 10, 10, 0, 0, 100, 100, 1);
         game.addCelestialObject(o2);
         game.applyGravity(o1);
         game.removeObjectsToBeRemoved();
-        assertEquals(1, game.getObjects().size());
+        assertEquals(125, game.getObjects().get(0).getSize(), 0);
     }
 }

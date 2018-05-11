@@ -1,5 +1,5 @@
 # Harjoitustyö: Gravity Simulator
-*Yksinkertainen kaksiulotteista painovoimaa noudattavan järjestelmän simulaattori*
+*Yksinkertainen kaksiulotteista painovoimaa noudattavan järjestelmän simulaattori, joka mahdollistaa uusien kappaleiden luomisen ja lisäämisen, sekä avaruudessa liikkumisen.*
 
 [*Määrittelydokumentti*](https://github.com/Mustekala/otm-harjoitustyo/blob/master/GravitySimulator/dokumentaatio/vaatimusmaarittely.md)
 
@@ -10,6 +10,10 @@
 [*Arkkitehtuuri*](https://github.com/Mustekala/otm-harjoitustyo/blob/master/GravitySimulator/dokumentaatio/arkkitehtuuri.md)
 
 [*Week 5 & 6 releases*](https://github.com/Mustekala/otm-harjoitustyo/releases)
+
+[*Final release*](https://github.com/Mustekala/otm-harjoitustyo/releases/tag/v1.0)
+
+[*Credits*](https://github.com/Mustekala/otm-harjoitustyo/blob/master/GravitySimulator/dokumentaatio/credits.md)
 
 ## Komentorivitoiminnot
 

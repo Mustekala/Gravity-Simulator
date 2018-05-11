@@ -95,10 +95,10 @@ public final class Game {
     }
     
     public CelestialObject handleCollision(CelestialObject o1, CelestialObject o2, double distance) {
-        if (distance < o1.getSize() * Math.pow(10, 6)) {
+        if (distance < (o1.getSize() / 2) * Math.pow(10, 6)) {
             if (o1.getMass() >= o2.getMass()) {
                 o1.setMass(o1.getMass() + o2.getMass());
-                o1.setSize(o1.getSize() + o2.getSize() / 2);
+                o1.setSize(o1.getSize() + o2.getSize() / 4);
                 return o2;
             } 
         }

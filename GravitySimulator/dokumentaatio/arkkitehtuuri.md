@@ -10,8 +10,7 @@ Pakkaus _gravitysimulator.ui_ sisältää JavaFX:llä toteutetun käyttöliittym
 
 ## Käyttöliittymä
 
-JavaFX:llä luotu käyttöliittymä sisältää kolme erilaista näkymää: valikon, credits-ruudun ja itse pelin. Valikko on toteutettu BorderPane-tyyppisenä, ja peli on toteutettu subsceneinä, jotka sisältävät pelin näkymän ja valikon.
-Credits on myös subscene.
+JavaFX:llä luotu käyttöliittymä sisältää kaksi erilaista näkymää: valikon ja itse pelin. Valikko on toteutettu BorderPane-tyyppisenä, ja peli on toteutettu subsceneinä, jotka sisältävät pelin näkymän ja valikon.
 
 ## Tallennus
 
