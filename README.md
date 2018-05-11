@@ -9,7 +9,7 @@
 
 [*Arkkitehtuuri*](https://github.com/Mustekala/otm-harjoitustyo/blob/master/GravitySimulator/dokumentaatio/arkkitehtuuri.md)
 
-[*Week 5 & 6 releases*](https://github.com/Mustekala/otm-harjoitustyo/releases)
+[*Testaus*](https://github.com/Mustekala/otm-harjoitustyo/blob/master/GravitySimulator/dokumentaatio/testaus.md)
 
 [*Final release*](https://github.com/Mustekala/otm-harjoitustyo/releases/tag/v1.0)
 
