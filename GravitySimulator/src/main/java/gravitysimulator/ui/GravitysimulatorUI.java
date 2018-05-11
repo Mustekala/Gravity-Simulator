@@ -76,16 +76,13 @@ public class GravitysimulatorUI extends Application {
         //Buttons
         newGameButton.setOnAction((event) -> {
             try {
-                VBox menus = new VBox();
                 CelestialObjectUI objectUI = new CelestialObjectUI();
                 gameUI = new GameUI(objectUI);
                 game = new Game(gameUI);  
                 //Load game for ui use
                 gameUI.loadGame(game);
-                GameMenu gameMenu = new GameMenu(game);
-                menus.getChildren().add(gameMenu.getScene());
-                menus.getChildren().add(objectUI.getScene());
-                layout.setLeft(menus);                       
+                GameMenu gameMenu = new GameMenu(game, objectUI);
+                layout.setLeft(gameMenu.getScene());                       
                 layout.setCenter(gameUI.getScene());          
                 game.startUpdate();
             } catch (Exception ex) {
@@ -95,18 +92,15 @@ public class GravitysimulatorUI extends Application {
         
         loadSaveButton.setOnAction((event) -> {
             try {
-                VBox menus = new VBox();
                 CelestialObjectUI objectUI = new CelestialObjectUI();
                 gameUI = new GameUI(objectUI);
                 game = new Game(gameUI);
                 //Load game for ui use
                 gameUI.loadGame(game);
-                GameMenu gameMenu = new GameMenu(game);                                
+                GameMenu gameMenu = new GameMenu(game, objectUI);                                
                 ArrayList<CelestialObject> objects = (ArrayList<CelestialObject>) load.loadGame();
                 game.setObjects(objects);
-                menus.getChildren().add(gameMenu.getScene());
-                menus.getChildren().add(objectUI.getScene());
-                layout.setLeft(menus); 
+                layout.setLeft(gameMenu.getScene()); 
                 layout.setCenter(gameUI.getScene());
                 game.startUpdate();
             } catch (Exception ex) {

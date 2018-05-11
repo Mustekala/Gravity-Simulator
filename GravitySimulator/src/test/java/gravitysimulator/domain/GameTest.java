@@ -42,9 +42,9 @@ public class GameTest {
     }
     
     @Test
-    public void cantAddNonStarsOrNonPlanets() {
+    public void notDefinedObjectsArePlanets() {
         game.addCelestialObject(game.createCelestialObject("teapot", "teatime", 0, 0, 0, 0, 0, 0, 1));
-        assertEquals(0, game.getObjects().size());
+        assertEquals(game.getObjects().get(0).getType(), "planet");
     }
     
     @Test

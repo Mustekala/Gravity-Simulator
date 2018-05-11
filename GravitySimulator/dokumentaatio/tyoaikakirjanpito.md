@@ -1,31 +1,33 @@
 Työaikakirjanpito
 
-26.3 Aloitettu vaatimusmäärittely, 30 min
+26.3 Aloitettu vaatimusmäärittely. 30 min
 
-27.3 Luotu pohja projektille, vaatimusmäärittely valmis, 2h
+27.3 Luotu pohja projektille. Vaatimusmäärittely valmis. 2h
 
-2-6.4 Laajennettu projektin pohjaa, n. 2h
+2-6.4 Laajennettu projektin pohjaa. n. 2h
 
-8.4 Luotu valikko, 2h
+8.4 Luotu valikko. 2h
 
-9.4 Aloitettu itse pelin koodaaminen sekä etsitty resursseja netistä, 4h
+9.4 Aloitettu itse pelin koodaaminen sekä etsitty resursseja netistä. 4h
 
-10.4 Jatkettu pelin koodaamista, 4h
+10.4 Jatkettu pelin koodaamista. 4h
 
-10-16.4 Jatkettu pelin koodaamista, 4h
+10-16.4 Jatkettu pelin koodaamista. 4h
 
-17.4 Uusittu gravitaatiolasku, tehty checkstyle yms., 4h
+17.4 Uusittu gravitaatiolasku. Tehty checkstyle yms. 4h
 
-23.4 Testailtu kameran toimintaa, korjattu virheitä, 2h
+23.4 Testailtu kameran toimintaa. Korjattu virheitä. 2h
 
-24.4 Korjattu pakkausrakenne, lisätty release, lisätty testausta, parannettu koodia, 5h
+24.4 Korjattu pakkausrakenne. Lisätty release. Lisätty testausta. Parannettu koodia, 5h
 
-29.4 Tehty tallennusominaisuutta, 4h
+29.4 Tehty tallennusominaisuutta. 4h
 
-2.5 Jatkettu tallennusominaisuutta, tehty viikon 6 vaatimuksia, 8h
+2.5 Jatkettu tallennusominaisuutta. Tehty viikon 6 vaatimuksia, 8h
 
-9.5 Korjattu pelin paha lagaaminen, 3h
+9.5 Korjattu pelin paha lagaaminen. 3h
 
-10.5 Lisätty kamera, muutettu tapa jolla objekteja lisätään toimimaan hiirellä, 6h
+10.5 Lisätty kamera. Muutettu tapa jolla objekteja lisätään toimimaan hiirellä. 6h
 
-Käytetyt tunnit yhteensä: 50,5h
+10.5 Lisätty ruutu, jossa tietoa valitusta objektista. Lisätty seuraava kamera. Lisätty törmäys. Lisätty toimiva credits-ruutu. Lisätty testejä. 4h.
+
+Käytetyt tunnit yhteensä: 54,5h

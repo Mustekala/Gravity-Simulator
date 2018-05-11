@@ -18,21 +18,6 @@ public class CelestialObjectDao implements Dao<CelestialObject, Integer> {
     }
 
     @Override
-    public CelestialObject findOne(Integer key) throws SQLException {
-        try (Connection conn = database.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement("SELECT id, type, name, x, y, xSpeed, ySpeed, mass, size, priority FROM celestialObject WHERE id = ?");
-            stmt.setInt(1, key);
-
-            ResultSet result = stmt.executeQuery();
-            if (!result.next()) {
-                return null;
-            }
-
-            return null;
-        }
-    }
-
-    @Override
     public List<CelestialObject> findAll() throws SQLException {
         List<CelestialObject> objects = new ArrayList<>();
 
@@ -52,13 +37,7 @@ public class CelestialObjectDao implements Dao<CelestialObject, Integer> {
     }
 
     @Override
-    public CelestialObject saveOrUpdate(CelestialObject object) throws SQLException {
-
-        CelestialObject byName = findByName(object.getName());
-
-        if (byName != null) {
-            return byName;
-        } 
+    public void saveOrUpdate(CelestialObject object) throws SQLException {
 
         try (Connection conn = database.getConnection()) {
             if (object.getName() != null) {
@@ -76,15 +55,8 @@ public class CelestialObjectDao implements Dao<CelestialObject, Integer> {
             }
         }
 
-        return findByName(object.getName());
     }
 
-    private CelestialObject findByName(String name) throws SQLException {
-        try (Connection conn = database.getConnection()) {
-            //TODO
-            return null;
-        }
-    }
     
     public void clearTable() throws SQLException {
         try (Connection conn = database.getConnection()) {
@@ -106,10 +78,5 @@ public class CelestialObjectDao implements Dao<CelestialObject, Integer> {
                                     "	size real,\n" +
                                     "	priority integer)").executeUpdate();
         }
-    }
-    
-    @Override
-    public void delete(Integer key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

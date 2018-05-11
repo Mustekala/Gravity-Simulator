@@ -15,7 +15,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 
@@ -31,8 +30,10 @@ public class GameUI {
     private Image planet;
     
     double mouseX, mouseY;
-    double camX;
-    double camY;
+    int camX;
+    int camY;
+    //Camera follows selected object
+    boolean followMode;
     
     //Mode to add objects using mouse
     boolean addCelestialObjectMode;
@@ -123,26 +124,19 @@ public class GameUI {
         });
         
         gameScene.setOnMouseDragged((MouseEvent evt) -> {
-            //Make mouse location to ignore gameMenu
-            double x = evt.getSceneX() - 200;
-            double y = evt.getSceneY() - 25;
-            double camMoveX, camMoveY;
-            //Not a "real" camera, just use it to move all objects
-            camX = camX + (x - mouseX);
-            camY = camY + (y - mouseY);
-            mouseX = evt.getSceneX() - 200;
-            mouseY = evt.getSceneY() - 25;
+            if (!followMode || selectedObject == null) {
+                //Make mouse location to ignore gameMenu
+                double x = evt.getSceneX() - 200;
+                double y = evt.getSceneY() - 25;
+                double camMoveX, camMoveY;
+                //Not a "real" camera, just use it to move all objects
+                camX = camX + (int)(x - mouseX);
+                camY = camY + (int)(y - mouseY);
+                mouseX = evt.getSceneX() - 200;
+                mouseY = evt.getSceneY() - 25;
+            }    
         });
 
-        /*Zoom with mouse wheel TODO
-        gameScene.setOnScroll((ScrollEvent evt) -> {
-            camera.setTranslateZ(camera.getTranslateZ() + evt.getDeltaY() * 10);
-            camera.setTranslateX(camera.getTranslateX() - evt.getDeltaY() *2);
-            camera.setTranslateY(camera.getTranslateY() - evt.getDeltaY() *2);
-        });
-        */
-        
-        
         return gameScene;
     }
 
@@ -174,14 +168,18 @@ public class GameUI {
             }      
             gc.drawImage( img, (int) o.getX() - o.getSize() / 2 + camX + cameraCenterX, (int) o.getY() - o.getSize() / 2 + camY + cameraCenterY, o.getSize(), o.getSize());          
         }
-        //Object info
+        //Object info and camera follow mode
         if (selectedObject != null) {
             objectUI.name.textProperty().setValue(selectedObject.getName());
             objectUI.type.textProperty().setValue("Type: " + selectedObject.getType());
-            objectUI.x.textProperty().setValue("X: " + selectedObject.getX());
-            objectUI.y.textProperty().setValue("Y: " + selectedObject.getY());
+            objectUI.x.textProperty().setValue("X: " + (int)selectedObject.getX());
+            objectUI.y.textProperty().setValue("Y: " + (int)selectedObject.getY());
             objectUI.mass.textProperty().setValue("Mass: " + selectedObject.getMass());
             objectUI.size.textProperty().setValue("Size: " + selectedObject.getSize());
+            if (followMode) {
+                camX = (int)-selectedObject.getX() + 500;
+                camY = (int)-selectedObject.getY() + 350;
+            }
         }    
     }   
     

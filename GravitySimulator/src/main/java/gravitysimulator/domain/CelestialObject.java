@@ -16,7 +16,7 @@ import javafx.scene.shape.Circle;
 public class CelestialObject {
     
     private Integer id;
-    private final String name;
+    private String name;
     private double x;
     private double y;
     private double xSpeed;
@@ -40,7 +40,7 @@ public class CelestialObject {
         //mass * 10x24, in Yottagrams
         this.mass = mass;
         this.size = size;      
-        object = new Circle(x, y, size);
+        object = new Circle(x, y, size / 2);
         this.priority = priority;
     }
     
@@ -59,7 +59,10 @@ public class CelestialObject {
     public String getName() {
         return name;
     }
-     
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     public double getX() {
         return x;
     };
@@ -71,10 +74,15 @@ public class CelestialObject {
     public double getXSpeed() {
         return xSpeed;
     };
-    
+    public void setXSpeed(double xSpeed){
+        this.xSpeed = xSpeed;
+    }
     public double getYSpeed() {
         return ySpeed;
     };
+    public void setYSpeed(double ySpeed){
+        this.ySpeed = ySpeed;
+    }
     
     public double getMass() {
         return mass;
@@ -88,6 +96,7 @@ public class CelestialObject {
     };
     public void setSize(double size) {
         this.size = size;
+        object.setRadius(size / 2);
     };
     
     public int getPriority() {
@@ -106,7 +115,7 @@ public class CelestialObject {
     };
     
     public void setSpeed(double xSpeed, double ySpeed) {
-        this.xSpeed = xSpeed;
-        this.ySpeed = ySpeed;
+        setXSpeed(xSpeed);
+        setYSpeed(ySpeed);
     };
 }

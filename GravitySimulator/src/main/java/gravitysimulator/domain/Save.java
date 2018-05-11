@@ -22,6 +22,10 @@ public class Save {
     Database database;
     CelestialObjectDao celestialObjects;
     
+    /**
+     * Class for saving the system into a SQLite database
+     * @throws ClassNotFoundException
+     */
     public Save() throws ClassNotFoundException {
         database = new Database("jdbc:sqlite:gravitysimulator.db");      
         celestialObjects = new CelestialObjectDao(database); 
@@ -30,6 +34,7 @@ public class Save {
     /**
     * saveGame saves all the objects from the game into database.
     * @param objects all the objects from game
+     * @throws java.sql.SQLException
     */
     public void saveGame(ArrayList<CelestialObject> objects) throws SQLException {
         celestialObjects.clearTable();
@@ -41,5 +46,9 @@ public class Save {
                 Logger.getLogger(Save.class.getName()).log(Level.SEVERE, null, ex);
             }
         });           
+    }
+    
+    public void clearSave() throws SQLException {
+        celestialObjects.clearTable();
     }
 }

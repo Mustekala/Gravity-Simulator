@@ -29,13 +29,19 @@ public class GameMenu {
     Game game;
     Save save;
     GameUI gameUI;
-    //Show info on objects
-
-    
-    public GameMenu(Game game) throws Exception {
+    CelestialObjectUI objectUI;
+   
+    /**
+     *
+     * @param game the game 
+     * @param objectUI ui to show object info on. Updated in gameUI.
+     * @throws Exception
+     */
+    public GameMenu(Game game, CelestialObjectUI objectUI) throws Exception {
         this.game = game;  
         this.save = new Save();
         this.gameUI = game.getUi();
+        this.objectUI = objectUI;
     }
     
     public SubScene getScene() {      
@@ -62,6 +68,8 @@ public class GameMenu {
               
         Button addStarButton = new Button("Add star");
         Button addPlanetButton = new Button("Add planet");
+        Button modifyObjectButton = new Button("Modify selected object");
+        Button followObjectButton = new Button("Follow selected object");
         
         addObjectsMenu.getChildren().add(nameText);
         addObjectsMenu.getChildren().add(name);
@@ -83,12 +91,12 @@ public class GameMenu {
         
         addObjectsMenu.getChildren().add(addStarButton);
         addObjectsMenu.getChildren().add(addPlanetButton);
+        addObjectsMenu.getChildren().add(modifyObjectButton);
+        addObjectsMenu.getChildren().add(followObjectButton);
         
         //Info menu
-        VBox infoMenu = new VBox();
-        infoMenu.setSpacing(5);
-        infoMenu.setPadding(new Insets(5, 5, 5, 5));
-                      
+        SubScene infoMenu = objectUI.getScene();
+                   
         //Saving menu
         VBox bottonMenu = new VBox();
         bottonMenu.setSpacing(5);
@@ -110,6 +118,34 @@ public class GameMenu {
                     Double.parseDouble(ySpeed.getText()), Double.parseDouble(mass.getText()), Double.parseDouble(size.getText()), Integer.parseInt(priority.getText())));
         });
         
+        modifyObjectButton.setOnAction((event) -> {
+            CelestialObject o = gameUI.selectedObject;
+            if (o != null) {            
+                if (!name.getText().isEmpty()) {
+                    o.setName(name.getText());
+                }
+                if (!xSpeed.getText().isEmpty()) {
+                    o.setXSpeed(Double.parseDouble(xSpeed.getText()));
+                }
+                if (!ySpeed.getText().isEmpty()) {
+                    o.setYSpeed(Double.parseDouble(ySpeed.getText()));
+                }
+                if (!mass.getText().isEmpty()) {
+                    o.setMass(Double.parseDouble(mass.getText()));
+                }
+                if (!mass.getText().isEmpty()) {
+                    o.setMass(Double.parseDouble(mass.getText()));
+                }
+                if (!size.getText().isEmpty()) {
+                    o.setSize(Double.parseDouble(size.getText()));
+                }
+            }
+        });
+        
+        followObjectButton.setOnAction((event) -> {
+            gameUI.followMode = !gameUI.followMode;
+        });
+        
         //Pause the game
         pauseButton.setOnAction((event) -> {
             if (game.isPaused()) {
@@ -127,11 +163,11 @@ public class GameMenu {
             }
         });
         
-        menu.setLeft(addObjectsMenu);
+        menu.setTop(addObjectsMenu);
         menu.setCenter(infoMenu);
         menu.setBottom(bottonMenu);
                       
-        SubScene menuScene = new SubScene(menu, 200, 500);
+        SubScene menuScene = new SubScene(menu, 200, 775);
    
         return menuScene;
     }
