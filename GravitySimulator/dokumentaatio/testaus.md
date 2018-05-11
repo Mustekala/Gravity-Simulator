@@ -32,6 +32,6 @@ Sovellus on haettu ja sitä on testattu [käyttöohjeen](https://raw.githubuserc
 
 ### Toiminnallisuudet
 
-Kaikki [määrittelydokumentin](https://raw.githubusercontent.com/Mustekala/otm-harjoitustyo/master/GravitySimulator/dokumentaatio/vaatimusmaarittely) ja käyttöohjeen listaamat toiminnallisuudet on käyty läpi.
+Kaikki [määrittelydokumentin](https://raw.githubusercontent.com/Mustekala/otm-harjoitustyo/master/GravitySimulator/dokumentaatio/vaatimusmaarittely.md) ja käyttöohjeen listaamat toiminnallisuudet on käyty läpi.
 
 
