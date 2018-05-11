@@ -13,9 +13,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author eero
  * Save provides saving functionality.
+ * @author eero
+ * 
  */
 public class Save {
     
@@ -24,7 +24,7 @@ public class Save {
     
     /**
      * Class for saving the system into a SQLite database
-     * @throws ClassNotFoundException
+     * @throws ClassNotFoundException if database creation fails
      */
     public Save() throws ClassNotFoundException {
         database = new Database("jdbc:sqlite:gravitysimulator.db");      
@@ -33,10 +33,9 @@ public class Save {
     
     /**
      * Class for saving the system into a SQLite database
-     * @param db the database to save to
-     * @throws ClassNotFoundException
+     * @param db the database to save to 
      */
-    public Save(Database db) throws ClassNotFoundException {
+    public Save(Database db) {
         database = db;     
         celestialObjects = new CelestialObjectDao(database); 
     }
@@ -44,7 +43,7 @@ public class Save {
     /**
     * saveGame saves all the objects from the game into database.
     * @param objects all the objects from game
-     * @throws java.sql.SQLException
+     * @throws java.sql.SQLException if database save fails
     */
     public void saveGame(ArrayList<CelestialObject> objects) throws SQLException {
         celestialObjects.dropTable();

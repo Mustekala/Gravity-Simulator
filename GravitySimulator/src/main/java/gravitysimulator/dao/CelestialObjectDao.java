@@ -24,7 +24,7 @@ public class CelestialObjectDao implements Dao<CelestialObject, Integer> {
     /**
      * Finds all saved CelestialObjects
      * @return list of all saved CelestialObjects
-     * @throws SQLException
+     * @throws SQLException database connection fails
      */
     @Override
     public List<CelestialObject> findAll() throws SQLException {
@@ -48,7 +48,7 @@ public class CelestialObjectDao implements Dao<CelestialObject, Integer> {
     /**
      * Saves CelestialObjects
      * @param object the CelestialObject to be saved
-     * @throws SQLException
+     * @throws SQLException if database connection fails
      */
     @Override
     public void saveOrUpdate(CelestialObject object) throws SQLException {
@@ -73,7 +73,7 @@ public class CelestialObjectDao implements Dao<CelestialObject, Integer> {
 
     /**
      * Drops the celestialObject table
-     * @throws SQLException
+     * @throws SQLException if database connection fails
      */
     public void dropTable() throws SQLException {
         try (Connection conn = database.getConnection()) {
@@ -83,7 +83,7 @@ public class CelestialObjectDao implements Dao<CelestialObject, Integer> {
     
     /**
      * Creates an empty table
-     * @throws SQLException
+     * @throws SQLException if database connection fails
      */
     public void createTable() throws SQLException {
         try (Connection conn = database.getConnection()) {

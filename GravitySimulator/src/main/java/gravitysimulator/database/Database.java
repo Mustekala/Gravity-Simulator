@@ -5,6 +5,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Database class provides database functionality
+ * @author eero
+ */
 public class Database {
 
     private final String databaseAddress;

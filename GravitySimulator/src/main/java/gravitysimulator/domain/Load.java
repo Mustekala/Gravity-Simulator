@@ -11,9 +11,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- *
- * @author eero
  * Load provides loading functionality
+ * @author eero
+ *
  */
 public class Load {
         
@@ -33,6 +33,7 @@ public class Load {
     /**
     * loadGame loads all the objects from the database table celestialObject.
     * @return objects all the objects from the database table celestialObject
+     * @throws java.sql.SQLException if database connection fails
     */
     public List<CelestialObject> loadGame() throws SQLException {
         return celestialObjects.findAll();

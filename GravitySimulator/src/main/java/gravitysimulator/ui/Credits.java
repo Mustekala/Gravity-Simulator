@@ -13,9 +13,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 
 /**
- *
+ * Credits shows credits for CC-licensed stuff
  * @author eero
- * Credits shows credits for CC-licensed stuff and for the creator :D
+ * 
  */
 public class Credits {
     

@@ -8,9 +8,9 @@ package gravitysimulator.domain;
 import javafx.scene.shape.Circle;
 
 /**
- *
- * @author eero
  * CelestialObject is the superclass for all objects in game
+ * @author eero
+ * 
  */
 
 public class CelestialObject {

@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 
 /**
- *
+ * Game class updates and handles calculations for all the objects in the game.
  * @author eero
- * Game class updates and draws all the objects in the game.
+ * 
  */
 public final class Game {
     

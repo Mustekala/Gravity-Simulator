@@ -19,9 +19,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 /**
- *
- * @author eero
  * Class provides the backbone of the UI, and functions as main menu
+ * @author eero
+ * 
  */
 
 public class GravitysimulatorUI extends Application {

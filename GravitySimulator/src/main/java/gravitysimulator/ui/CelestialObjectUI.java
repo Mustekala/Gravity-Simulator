@@ -12,9 +12,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 /**
- *
- * @author eero
  * Shows info about currently selected celestialObject
+ * @author eero
+ * 
  */
 public class CelestialObjectUI {
 

@@ -20,9 +20,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 /**
- *
- * @author eero
  * Game menu provides functionality to add objects into the system, and to save the system
+ * @author eero
+ * 
  */
 public class GameMenu {
     
@@ -35,7 +35,7 @@ public class GameMenu {
      *
      * @param game the game 
      * @param objectUI ui to show object info on. Updated in gameUI.
-     * @throws Exception
+     * @throws Exception if database connection fails in Save class
      */
     public GameMenu(Game game, CelestialObjectUI objectUI) throws Exception {
         this.game = game;  

@@ -6,9 +6,9 @@
 package gravitysimulator.domain;
 
 /**
- *
- * @author eero
  * Planet is the subclass for all planets in game
+ * @author eero
+ * 
  */
 public class Planet extends CelestialObject {
 
